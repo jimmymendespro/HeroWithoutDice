@@ -18,11 +18,11 @@ public abstract class Personnage {
 		return nom;
 	}
 	
-	public int getHabilete() {
+	public int getSkill() {
 		return habilete;
 	}
 	
-	public int getEndurance() {
+	public int getStamina() {
 		return endurance;
 	}
 
@@ -37,7 +37,7 @@ public abstract class Personnage {
 	// Méthodes
 	
 	public int recevoirDegats(int nombreDeDegats) {
-		int endurance = this.getEndurance();
+		int endurance = this.getStamina();
 		endurance -= nombreDeDegats;
 		this.setEndurance(endurance);
 		return endurance;
