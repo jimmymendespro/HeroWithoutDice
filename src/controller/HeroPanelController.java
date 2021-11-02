@@ -16,7 +16,7 @@ public class HeroPanelController {
 	// Methods -------------------------------------------------------------------------------------------------------------------------------------------
 	
 	public void setHero() {
-		heroPanel.getHeroName().setText(pj.getNom());
+		heroPanel.getHeroName().setText(pj.getName());
 		majHero();
 	}
 	
@@ -24,7 +24,7 @@ public class HeroPanelController {
 		heroPanel.getHeroSkill().setText("Habileté : "+pj.getSkill());
 		heroPanel.getHeroStamina().setText("Endurance : "+pj.getStamina());
 		heroPanel.getHeroLuck().setText("Chance : "+pj.getLuck());
-		heroPanel.getHeroGold().setText("Or : "+pj.getOr());
+		heroPanel.getHeroGold().setText("Or : "+pj.getGold());
 		heroPanel.getHeroProvisions().setText("Provisions : "+pj.getProvision());
 		String equipmentString = "";
 		for(int i = 0 ; i < pj.getEquipment().size() ; i++) {

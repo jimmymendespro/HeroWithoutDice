@@ -1,6 +1,6 @@
-/controller/
 /data/
-/gui/
-/main/
-/tramereader/
 /utilities/
+/tramereader/
+/main/
+/controller/
+/gui/

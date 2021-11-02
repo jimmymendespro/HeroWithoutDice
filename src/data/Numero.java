@@ -2,6 +2,10 @@ package data;
 
 import java.util.HashSet;
 
+/**
+ * Représente un numéro du livre dans son ensemble avec les numéros suivants associés.
+ * @author Jimmy Mendes
+ */
 public class Numero {
 	
 	private int numero;
@@ -12,7 +16,7 @@ public class Numero {
 		ensembleNumeroSuivants = new HashSet<>();
 	}
 	
-	// Getters et Setter
+	// Getters & Setter -----------------------------------------------------------------------------------------------------------------------------------
 
 	public int getNumero() {
 		return numero;
@@ -22,7 +26,7 @@ public class Numero {
 		return ensembleNumeroSuivants;
 	}
 
-	// Méthodes
+	// Methods ----------------------------------------------------------------------------------------------------------------------------------------------
 	
 	public String toString() {
 		String retour = "";
@@ -32,14 +36,12 @@ public class Numero {
 		return numero +" -"+ retour;
 	}
 	
+	/**
+	 * Ajoute un numéro suivant à ensembleNumeroSuivants.
+	 * @param nombre
+	 */
 	public void addNumero(int nombre) {
 		this.ensembleNumeroSuivants.add(new Numero(nombre));
-	}
-	
-	public void fromIntegerToNumero(HashSet<Integer> ensembleNombre) {
-		for(Integer nombre : ensembleNombre) {
-			this.ensembleNumeroSuivants.add(new Numero(nombre));
-		}
 	}
 	
 }

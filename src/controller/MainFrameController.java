@@ -19,11 +19,12 @@ import utilities.Utilitaire;
 
 public class MainFrameController {
 	
+	private MainReader mainReader;
+	
 	private NewCharacterPanelController newCharacterController;
 	private HeroPanelController heroPanelController;
-	
 	private MainFrame mainFrame;
-	private MainReader mainReader;
+	
 	private Hero pj;
 	private Numero currentNumero;
 	private int previousNumber;
@@ -82,40 +83,40 @@ public class MainFrameController {
 
 	public void setEnnemi() {
 		currentEnnemi = new Ennemi(currentAction.get(1), Integer.parseInt(currentAction.get(2)), Integer.parseInt(currentAction.get(3)));
-		mainFrame.getNomEnnemi().setText(currentAction.get(1));
-		mainFrame.getHabileteEnnemi().setText("Habileté : "+currentAction.get(2));
-		mainFrame.getEnduranceEnnemi().setText("Endurance : "+currentAction.get(3));
-		if(Integer.parseInt(currentAction.get(5)) == -1) mainFrame.getFuite().setVisible(false);
+		mainFrame.getEnnemiPanel().getEnnemiName().setText(currentAction.get(1));
+		mainFrame.getEnnemiPanel().getEnnemiSkill().setText("Habileté : "+currentAction.get(2));
+		mainFrame.getEnnemiPanel().getEnnemiStamina().setText("Endurance : "+currentAction.get(3));
+		if(Integer.parseInt(currentAction.get(5)) == -1) mainFrame.getEnnemiPanel().getEscape().setVisible(false);
 		else if(Integer.parseInt(currentAction.get(5)) != -1 && Integer.parseInt(currentAction.get(6)) == -1) {
-			mainFrame.getFuite().setVisible(true);
-			mainFrame.getFuite().setEnabled(true);
-			mainFrame.getFuite().addActionListener(new FuiteCombatButtonListener());
+			mainFrame.getEnnemiPanel().getEscape().setVisible(true);
+			mainFrame.getEnnemiPanel().getEscape().setEnabled(true);
+			mainFrame.getEnnemiPanel().getEscape().addActionListener(new FuiteCombatButtonListener());
 		}
 		else {
-			mainFrame.getFuite().setVisible(true);
-			mainFrame.getFuite().setEnabled(false);
-			mainFrame.getFuite().addActionListener(new FuiteCombatButtonListener());
+			mainFrame.getEnnemiPanel().getEscape().setVisible(true);
+			mainFrame.getEnnemiPanel().getEscape().setEnabled(false);
+			mainFrame.getEnnemiPanel().getEscape().addActionListener(new FuiteCombatButtonListener());
 		}
 	}
 	
 	public void setRandomEnnemi(String ennemiName, int ennemiSkill, int ennemiStamina) {
 		currentEnnemi = new Ennemi(ennemiName, ennemiSkill, ennemiStamina);
-		mainFrame.getNomEnnemi().setText(ennemiName);
-		mainFrame.getHabileteEnnemi().setText("Habileté : "+ennemiSkill);
-		mainFrame.getEnduranceEnnemi().setText("Endurance : "+ennemiStamina);
-		mainFrame.getFuite().setVisible(false);
+		mainFrame.getEnnemiPanel().getEnnemiName().setText(ennemiName);
+		mainFrame.getEnnemiPanel().getEnnemiSkill().setText("Habileté : "+ennemiSkill);
+		mainFrame.getEnnemiPanel().getEnnemiStamina().setText("Endurance : "+ennemiStamina);
+		mainFrame.getEnnemiPanel().getEscape().setVisible(false);
 	}
 	
 	public void setChoiceEnnemi() {
 		currentEnnemi = new Ennemi(currentAction.get(4), Integer.parseInt(currentAction.get(5)), Integer.parseInt(currentAction.get(6)));
-		mainFrame.getNomEnnemi().setText(currentAction.get(4));
-		mainFrame.getHabileteEnnemi().setText("Habileté : "+currentAction.get(5));
-		mainFrame.getEnduranceEnnemi().setText("Endurance : "+currentAction.get(6));
-		if(Integer.parseInt(currentAction.get(8)) == -1) mainFrame.getFuite().setVisible(false);
+		mainFrame.getEnnemiPanel().getEnnemiName().setText(currentAction.get(4));
+		mainFrame.getEnnemiPanel().getEnnemiSkill().setText("Habileté : "+currentAction.get(5));
+		mainFrame.getEnnemiPanel().getEnnemiStamina().setText("Endurance : "+currentAction.get(6));
+		if(Integer.parseInt(currentAction.get(8)) == -1) mainFrame.getEnnemiPanel().getEscape().setVisible(false);
 		else {
-			mainFrame.getFuite().setVisible(true);
-			mainFrame.getFuite().setEnabled(true);
-			mainFrame.getFuite().addActionListener(new FuiteCombatButtonListener());
+			mainFrame.getEnnemiPanel().getEscape().setVisible(true);
+			mainFrame.getEnnemiPanel().getEscape().setEnabled(true);
+			mainFrame.getEnnemiPanel().getEscape().addActionListener(new FuiteCombatButtonListener());
 		}
 	}
 	
@@ -128,21 +129,21 @@ public class MainFrameController {
 		else if(numeroCombat == 4) i = 19;
 		else if(numeroCombat == 5) i = 25;
 		currentEnnemi = new Ennemi(currentAction.get(i), Integer.parseInt(currentAction.get(i+1)), Integer.parseInt(currentAction.get(i+2)));
-		mainFrame.getNomEnnemi().setText(currentAction.get(i));
-		mainFrame.getHabileteEnnemi().setText("Habileté : "+currentAction.get(i+1));
-		mainFrame.getEnduranceEnnemi().setText("Endurance : "+currentAction.get(i+2));
-		if(Integer.parseInt(currentAction.get(i+4)) == -1) mainFrame.getFuite().setVisible(false);
-		else if(currentNumero.getNumero() == 230) mainFrame.getFuite().setVisible(false);
+		mainFrame.getEnnemiPanel().getEnnemiName().setText(currentAction.get(i));
+		mainFrame.getEnnemiPanel().getEnnemiSkill().setText("Habileté : "+currentAction.get(i+1));
+		mainFrame.getEnnemiPanel().getEnnemiStamina().setText("Endurance : "+currentAction.get(i+2));
+		if(Integer.parseInt(currentAction.get(i+4)) == -1) mainFrame.getEnnemiPanel().getEscape().setVisible(false);
+		else if(currentNumero.getNumero() == 230) mainFrame.getEnnemiPanel().getEscape().setVisible(false);
 		else {
-			mainFrame.getFuite().setVisible(true);
-			mainFrame.getFuite().setEnabled(true);
-			mainFrame.getFuite().addActionListener(new FuiteCombatButtonListener());
+			mainFrame.getEnnemiPanel().getEscape().setVisible(true);
+			mainFrame.getEnnemiPanel().getEscape().setEnabled(true);
+			mainFrame.getEnnemiPanel().getEscape().addActionListener(new FuiteCombatButtonListener());
 		}
 	}
 	
 	public void majEnnemi() {
-		mainFrame.getHabileteEnnemi().setText("Habileté : "+currentEnnemi.getSkill());
-		mainFrame.getEnduranceEnnemi().setText("Endurance : "+currentEnnemi.getStamina());
+		mainFrame.getEnnemiPanel().getEnnemiSkill().setText("Habileté : "+currentEnnemi.getSkill());
+		mainFrame.getEnnemiPanel().getEnnemiStamina().setText("Endurance : "+currentEnnemi.getStamina());
 	}
 	
 	public void calculNombreEnnemi() {
@@ -210,37 +211,37 @@ public class MainFrameController {
 		}
 		switch(compteur) {
 		case 1:
-			if(currentAction.get(1).equalsIgnoreCase("GOLD")) mainFrame.getLoot1Button().setText(currentAction.get(2)+" Or");
-			else mainFrame.getLoot1Button().setText(currentAction.get(2));
-			if(currentAction.get(1).equalsIgnoreCase("GOLD")) mainFrame.getLoot1Button().setActionCommand("GOLD");
-			else mainFrame.getLoot1Button().setActionCommand(currentAction.get(2));
+			if(currentAction.get(1).equalsIgnoreCase("GOLD")) mainFrame.getInteractionPanel().getLoot1Button().setText(currentAction.get(2)+" Or");
+			else mainFrame.getInteractionPanel().getLoot1Button().setText(currentAction.get(2));
+			if(currentAction.get(1).equalsIgnoreCase("GOLD")) mainFrame.getInteractionPanel().getLoot1Button().setActionCommand("GOLD");
+			else mainFrame.getInteractionPanel().getLoot1Button().setActionCommand(currentAction.get(2));
 			break;
 		case 2:
-			if(currentAction.get(1).equalsIgnoreCase("GOLD")) mainFrame.getLoot1Button().setText(currentAction.get(2)+" Or");
-			else mainFrame.getLoot1Button().setText(currentAction.get(2));
-			if(currentAction.get(1).equalsIgnoreCase("GOLD")) mainFrame.getLoot1Button().setActionCommand("GOLD");
-			else mainFrame.getLoot1Button().setActionCommand(currentAction.get(2));
+			if(currentAction.get(1).equalsIgnoreCase("GOLD")) mainFrame.getInteractionPanel().getLoot1Button().setText(currentAction.get(2)+" Or");
+			else mainFrame.getInteractionPanel().getLoot1Button().setText(currentAction.get(2));
+			if(currentAction.get(1).equalsIgnoreCase("GOLD")) mainFrame.getInteractionPanel().getLoot1Button().setActionCommand("GOLD");
+			else mainFrame.getInteractionPanel().getLoot1Button().setActionCommand(currentAction.get(2));
 			
-			if(currentAction.get(3).equalsIgnoreCase("GOLD")) mainFrame.getLoot1Button().setText(currentAction.get(4)+" Or");
-			else mainFrame.getLoot2Button().setText(currentAction.get(4));
-			if(currentAction.get(3).equalsIgnoreCase("GOLD")) mainFrame.getLoot2Button().setActionCommand("GOLD");
-			else mainFrame.getLoot2Button().setActionCommand(currentAction.get(4));
+			if(currentAction.get(3).equalsIgnoreCase("GOLD")) mainFrame.getInteractionPanel().getLoot1Button().setText(currentAction.get(4)+" Or");
+			else mainFrame.getInteractionPanel().getLoot2Button().setText(currentAction.get(4));
+			if(currentAction.get(3).equalsIgnoreCase("GOLD")) mainFrame.getInteractionPanel().getLoot2Button().setActionCommand("GOLD");
+			else mainFrame.getInteractionPanel().getLoot2Button().setActionCommand(currentAction.get(4));
 			break;
 		case 3:
-			if(currentAction.get(1).equalsIgnoreCase("GOLD")) mainFrame.getLoot1Button().setText(currentAction.get(2)+" Or");
-			else mainFrame.getLoot1Button().setText(currentAction.get(2));
-			if(currentAction.get(1).equalsIgnoreCase("GOLD")) mainFrame.getLoot1Button().setActionCommand("GOLD");
-			else mainFrame.getLoot1Button().setActionCommand(currentAction.get(2));
+			if(currentAction.get(1).equalsIgnoreCase("GOLD")) mainFrame.getInteractionPanel().getLoot1Button().setText(currentAction.get(2)+" Or");
+			else mainFrame.getInteractionPanel().getLoot1Button().setText(currentAction.get(2));
+			if(currentAction.get(1).equalsIgnoreCase("GOLD")) mainFrame.getInteractionPanel().getLoot1Button().setActionCommand("GOLD");
+			else mainFrame.getInteractionPanel().getLoot1Button().setActionCommand(currentAction.get(2));
 			
-			if(currentAction.get(3).equalsIgnoreCase("GOLD")) mainFrame.getLoot1Button().setText(currentAction.get(4)+" Or");
-			else mainFrame.getLoot2Button().setText(currentAction.get(4));
-			if(currentAction.get(3).equalsIgnoreCase("GOLD")) mainFrame.getLoot2Button().setActionCommand("GOLD");
-			else mainFrame.getLoot2Button().setActionCommand(currentAction.get(4));
+			if(currentAction.get(3).equalsIgnoreCase("GOLD")) mainFrame.getInteractionPanel().getLoot1Button().setText(currentAction.get(4)+" Or");
+			else mainFrame.getInteractionPanel().getLoot2Button().setText(currentAction.get(4));
+			if(currentAction.get(3).equalsIgnoreCase("GOLD")) mainFrame.getInteractionPanel().getLoot2Button().setActionCommand("GOLD");
+			else mainFrame.getInteractionPanel().getLoot2Button().setActionCommand(currentAction.get(4));
 
-			if(currentAction.get(5).equalsIgnoreCase("GOLD")) mainFrame.getLoot1Button().setText(currentAction.get(6)+" Or");
-			else mainFrame.getLoot3Button().setText(currentAction.get(6));
-			if(currentAction.get(5).equalsIgnoreCase("GOLD")) mainFrame.getLoot3Button().setActionCommand("GOLD");
-			else mainFrame.getLoot3Button().setActionCommand(currentAction.get(6));
+			if(currentAction.get(5).equalsIgnoreCase("GOLD")) mainFrame.getInteractionPanel().getLoot1Button().setText(currentAction.get(6)+" Or");
+			else mainFrame.getInteractionPanel().getLoot3Button().setText(currentAction.get(6));
+			if(currentAction.get(5).equalsIgnoreCase("GOLD")) mainFrame.getInteractionPanel().getLoot3Button().setActionCommand("GOLD");
+			else mainFrame.getInteractionPanel().getLoot3Button().setActionCommand(currentAction.get(6));
 			break;
 		default:
 			break;
@@ -268,20 +269,20 @@ public class MainFrameController {
 			System.out.println("CASE 4 MULTILOOT NO CODED");
 			break;
 		case 5:
-			if(currentAction.get(1).equalsIgnoreCase("GOLD")) mainFrame.getMultiLoot1Label().setText(currentAction.get(2)+" Or");
-			else mainFrame.getMultiLoot1Label().setText(currentAction.get(2));
+			if(currentAction.get(1).equalsIgnoreCase("GOLD")) mainFrame.getInteractionPanel().getMultiLoot1Label().setText(currentAction.get(2)+" Or");
+			else mainFrame.getInteractionPanel().getMultiLoot1Label().setText(currentAction.get(2));
 			
-			if(currentAction.get(3).equalsIgnoreCase("GOLD")) mainFrame.getMultiLoot2Label().setText(currentAction.get(4)+" Or");
-			else mainFrame.getMultiLoot2Label().setText(currentAction.get(4));
+			if(currentAction.get(3).equalsIgnoreCase("GOLD")) mainFrame.getInteractionPanel().getMultiLoot2Label().setText(currentAction.get(4)+" Or");
+			else mainFrame.getInteractionPanel().getMultiLoot2Label().setText(currentAction.get(4));
 
-			if(currentAction.get(5).equalsIgnoreCase("GOLD")) mainFrame.getMultiLoot3Label().setText(currentAction.get(6)+" Or");
-			else mainFrame.getMultiLoot3Label().setText(currentAction.get(6));
+			if(currentAction.get(5).equalsIgnoreCase("GOLD")) mainFrame.getInteractionPanel().getMultiLoot3Label().setText(currentAction.get(6)+" Or");
+			else mainFrame.getInteractionPanel().getMultiLoot3Label().setText(currentAction.get(6));
 			
-			if(currentAction.get(7).equalsIgnoreCase("GOLD")) mainFrame.getMultiLoot4Label().setText(currentAction.get(8)+" Or");
-			else mainFrame.getMultiLoot4Label().setText(currentAction.get(8));
+			if(currentAction.get(7).equalsIgnoreCase("GOLD")) mainFrame.getInteractionPanel().getMultiLoot4Label().setText(currentAction.get(8)+" Or");
+			else mainFrame.getInteractionPanel().getMultiLoot4Label().setText(currentAction.get(8));
 			
-			if(currentAction.get(9).equalsIgnoreCase("GOLD")) mainFrame.getMultiLoot5Label().setText(currentAction.get(10)+" Or");
-			else mainFrame.getMultiLoot5Label().setText(currentAction.get(10));
+			if(currentAction.get(9).equalsIgnoreCase("GOLD")) mainFrame.getInteractionPanel().getMultiLoot5Label().setText(currentAction.get(10)+" Or");
+			else mainFrame.getInteractionPanel().getMultiLoot5Label().setText(currentAction.get(10));
 			break;
 		default:
 			break;
@@ -289,18 +290,18 @@ public class MainFrameController {
 	}
 	
 	public void setEquipmentSwitchText() {
-		mainFrame.getEquipment1SwitchButton().setText(currentAction.get(1));
-		mainFrame.getEquipment1SwitchButton().setActionCommand(currentAction.get(1));
-		mainFrame.getEquipment2SwitchButton().setText(currentAction.get(2));
-		mainFrame.getEquipment2SwitchButton().setActionCommand(currentAction.get(2));
+		mainFrame.getInteractionPanel().getEquipment1SwitchButton().setText(currentAction.get(1));
+		mainFrame.getInteractionPanel().getEquipment1SwitchButton().setActionCommand(currentAction.get(1));
+		mainFrame.getInteractionPanel().getEquipment2SwitchButton().setText(currentAction.get(2));
+		mainFrame.getInteractionPanel().getEquipment2SwitchButton().setActionCommand(currentAction.get(2));
 	}
 	
 	public void setEquipmentDropText() {
-		mainFrame.getEquipmentDropLabel().setText("Souhaitez vous conserver : "+currentAction.get(2)+" ?");
+		mainFrame.getInteractionPanel().getEquipmentDropLabel().setText("Souhaitez vous conserver : "+currentAction.get(2)+" ?");
 	}
 	
 	public void setBuyOptionText() {
-		mainFrame.getBuyOptionText().setText("Désirez vous acheter : "+currentAction.get(2)+" ?");
+		mainFrame.getInteractionPanel().getBuyOptionText().setText("Désirez vous acheter : "+currentAction.get(2)+" ?");
 	}
 	
 	public void setNumerotListener() {
@@ -313,27 +314,20 @@ public class MainFrameController {
 	}
 	
 	public void setLootButtonListener() {
-		mainFrame.getLoot1Button().addActionListener(new LootChoiceButtonListener());
-		mainFrame.getLoot2Button().addActionListener(new LootChoiceButtonListener());
-		mainFrame.getLoot3Button().addActionListener(new LootChoiceButtonListener());
+		mainFrame.getInteractionPanel().getLoot1Button().addActionListener(new LootChoiceButtonListener());
+		mainFrame.getInteractionPanel().getLoot2Button().addActionListener(new LootChoiceButtonListener());
+		mainFrame.getInteractionPanel().getLoot3Button().addActionListener(new LootChoiceButtonListener());
 	}
 	
 	public void setGambleParameters() {
 		SpinnerModel gambleModel;
-		if(pj.getOr() > 20) {
+		if(pj.getGold() > 20) {
 			gambleModel = new SpinnerNumberModel(1,1,20,1);
 		}
 		else {
-			gambleModel = new SpinnerNumberModel(1,1,pj.getOr(),1);
+			gambleModel = new SpinnerNumberModel(1,1,pj.getGold(),1);
 		}
-		mainFrame.getGambleValue().setModel(gambleModel);
-	}
-	
-	public boolean testChance() {
-		int resultat = pj.calculScoreChance();
-		pj.decrementChance();
-		if(resultat >= 0) return true;
-		else return false;
+		mainFrame.getInteractionPanel().getGambleValue().setModel(gambleModel);
 	}
 	
 	public void setAction(ArrayList<String> keyWords) {
@@ -378,38 +372,30 @@ public class MainFrameController {
 			break;
 		case "TEST":
 			mainFrame.getNextNumberPanel().setNextButton(0);
-			mainFrame.setTest();
-			mainFrame.getAleatoireButton().addActionListener(new TestAleatoireButtonListener());
+			mainFrame.getInteractionPanel().setTest();
+			mainFrame.getInteractionPanel().getAleatoireButton().addActionListener(new TestAleatoireButtonListener());
 			switch(keyWords.get(1)) {
 			case "SKILL":
-				mainFrame.setTestHabilete();
+				mainFrame.getInteractionPanel().setTestHabilete();
 				break;
 			case "STAMINA":
-				mainFrame.setTestEndurance();
+				mainFrame.getInteractionPanel().setTestEndurance();
 				break;
 			case "LUCK":
-				mainFrame.setTestChance();
+				mainFrame.getInteractionPanel().setTestChance();
 				break;
 			case "MULTITEST":
-				mainFrame.setTestNone();
+				mainFrame.getInteractionPanel().setTestNone();
 				break;
 			case "MULTITESTLUCK":
-				mainFrame.setTestChance();
+				mainFrame.getInteractionPanel().setTestChance();
 				break;
 			case "NONE[1-3-5,2-4-6]":
-				mainFrame.setTestNone();
-				break;
 			case "NONE[1-2,3-4,5-6]":
-				mainFrame.setTestNone();
-				break;
 			case "NONE[1-3,4-5,6]":
-				mainFrame.setTestNone();
-				break;
 			case "NONE[1-4,5-6]":
-				mainFrame.setTestNone();
-				break;
 			case "NONE[1-5,6]":
-				mainFrame.setTestNone();
+				mainFrame.getInteractionPanel().setTestNone();
 				break;
 			default:
 				System.out.println("ERROR");
@@ -419,37 +405,38 @@ public class MainFrameController {
 			break;
 		case "TESTX":
 			mainFrame.getNextNumberPanel().setNextButton(0);
-			mainFrame.setTest();
-			mainFrame.getAleatoireButton().addActionListener(new TestXAleatoireButtonListener());
+			mainFrame.getInteractionPanel().setTest();
+			mainFrame.getInteractionPanel().getAleatoireButton().addActionListener(new TestXAleatoireButtonListener());
 			switch(keyWords.get(1)) {
 			case "SKILL":
-				mainFrame.setTestHabilete();
+				mainFrame.getInteractionPanel().setTestHabilete();
 				break;
 			case "STAMINA":
-				mainFrame.setTestEndurance();
+				mainFrame.getInteractionPanel().setTestEndurance();
 				break;
 			case "LUCK":
-				mainFrame.setTestChance();
+				mainFrame.getInteractionPanel().setTestChance();
 				break;
 			default:
 				System.out.println("ERROR");
 				break;
 			}
 			mainFrame.resetAffichage();
+			waitingForUser = true;
 			break;
 		case "TESTZ":
 			mainFrame.getNextNumberPanel().setNextButton(0);
-			mainFrame.setTest();
-			mainFrame.getAleatoireButton().addActionListener(new TestZAleatoireButtonListener());
+			mainFrame.getInteractionPanel().setTest();
+			mainFrame.getInteractionPanel().getAleatoireButton().addActionListener(new TestZAleatoireButtonListener());
 			switch(keyWords.get(1)) {
 			case "SKILL":
-				mainFrame.setTestHabilete();
+				mainFrame.getInteractionPanel().setTestHabilete();
 				break;
 			case "STAMINA":
-				mainFrame.setTestEndurance();
+				mainFrame.getInteractionPanel().setTestEndurance();
 				break;
 			case "LUCK":
-				mainFrame.setTestChance();
+				mainFrame.getInteractionPanel().setTestChance();
 				break;
 			default:
 				System.out.println("ERROR");
@@ -470,7 +457,8 @@ public class MainFrameController {
 				setEnnemi();
 				nombreEnnemi = 1;
 				numeroCombat = 1;
-				mainFrame.getAleatoireButton().addActionListener(new FightAleatoireButtonListener());
+				Utilitaire.removeAllListeners(mainFrame.getFightPanel().getFightRandom());
+				mainFrame.getFightPanel().getFightRandom().addActionListener(new FightAleatoireButtonListener());
 				waitingForUser = true;
 			}
 			break;
@@ -481,15 +469,16 @@ public class MainFrameController {
 			numeroCombat = 0;
 			setEnnemiX();
 			calculNombreEnnemi();
-			mainFrame.getAleatoireButton().addActionListener(new FightAleatoireButtonListener());
+			Utilitaire.removeAllListeners(mainFrame.getFightPanel().getFightRandom());
+			mainFrame.getFightPanel().getFightRandom().addActionListener(new FightAleatoireButtonListener());
 			break;
 		case "FIGHTZ":
 			mainFrame.getNextNumberPanel().setNextButton(0);
 			mainFrame.fightPanelRemoveAll();
 			if(keyWords.get(1).equalsIgnoreCase("RANDOMMONSTER")) {
-				mainFrame.setTest();
-				mainFrame.setThrowDice();
-				mainFrame.getAleatoireButton().addActionListener(new RandomMonsterButtonListener());
+				mainFrame.getInteractionPanel().setTest();
+				mainFrame.getInteractionPanel().setThrowDice();
+				mainFrame.getInteractionPanel().getAleatoireButton().addActionListener(new RandomMonsterButtonListener());
 				nombreEnnemi = 1;
 				numeroCombat = 1;
 			}
@@ -499,7 +488,8 @@ public class MainFrameController {
 				setEnnemiX();
 				calculNombreEnnemi();
 				nombreEnnemi++;
-				mainFrame.getAleatoireButton().addActionListener(new FightAleatoireButtonListener());
+				Utilitaire.removeAllListeners(mainFrame.getFightPanel().getFightRandom());
+				mainFrame.getFightPanel().getFightRandom().addActionListener(new FightAleatoireButtonListener());
 			}
 			break;
 		case "FIGHTMEAL":
@@ -509,11 +499,11 @@ public class MainFrameController {
 			setEnnemi();
 			nombreEnnemi = 1;
 			numeroCombat = 1;
-			mainFrame.getAleatoireButton().addActionListener(new FightAleatoireButtonListener());
+			mainFrame.getInteractionPanel().getAleatoireButton().addActionListener(new FightAleatoireButtonListener());
 			break;
 		case "ESCAPE":
-			mainFrame.setEscape();
-			mainFrame.getFuir().addActionListener(new FuiteAvantCombatButtonListener());
+			mainFrame.getInteractionPanel().setEscape();
+			mainFrame.getInteractionPanel().getFuir().addActionListener(new FuiteAvantCombatButtonListener());
 			//waitingForUser = true;
 			break;
 		case "LOOT":
@@ -550,22 +540,23 @@ public class MainFrameController {
 			setTextNumero(currentNumero);
 			break;
 		case "LOOTORNOT":
-			mainFrame.setLootOrNot();
-			if(keyWords.get(1).matches("EQUIPMENT|TREASURE")) mainFrame.getLootOrNotLabel().setText("Désirez vous prendre : " + keyWords.get(2) + " ?");
-			else mainFrame.getLootOrNotLabel().setText("Désirez vous prendre les provisions ?");
-			mainFrame.getOuiLootOrNot().addActionListener(new LootOrNotButtonListener());
-			mainFrame.getNonLootOrNot().addActionListener(new LootOrNotButtonListener());
+			mainFrame.getNextNumberPanel().setNextButton(0);
+			mainFrame.getInteractionPanel().setLootOrNot();
+			if(keyWords.get(1).matches("EQUIPMENT|TREASURE")) mainFrame.getInteractionPanel().getLootOrNotLabel().setText("Désirez vous prendre : " + keyWords.get(2) + " ?");
+			else mainFrame.getInteractionPanel().getLootOrNotLabel().setText("Désirez vous prendre les provisions ?");
+			mainFrame.getInteractionPanel().getOuiLootOrNot().addActionListener(new LootOrNotButtonListener());
+			mainFrame.getInteractionPanel().getNonLootOrNot().addActionListener(new LootOrNotButtonListener());
 			break;
 		case "LOOTCHOICE":
-			mainFrame.setLootChoice();
+			mainFrame.getInteractionPanel().setLootChoice();
 			setLootText();
 			setLootButtonListener();
 			break;
 		case "MULTILOOTCHOICE":
 			waitingForUser = true;
-			mainFrame.setLootMultiChoice();
+			mainFrame.getInteractionPanel().setLootMultiChoice();
 			setMultiLootText();
-			mainFrame.getValiderMultiLootChoice().addActionListener(new ValiderMultiLootButtonListener());
+			mainFrame.getInteractionPanel().getValiderMultiLootChoice().addActionListener(new ValiderMultiLootButtonListener());
 			break;
 		case "IFOBJECT":
 			mainFrame.resetAffichage();
@@ -578,7 +569,7 @@ public class MainFrameController {
 						heroPanelController.majHero();
 					}
 				}
-				else if(pj.getOr() >= Integer.parseInt(keyWords.get(2))) currentNumero.addNumero(Integer.parseInt(keyWords.get(3)));
+				else if(pj.getGold() >= Integer.parseInt(keyWords.get(2))) currentNumero.addNumero(Integer.parseInt(keyWords.get(3)));
 				break;
 			case "EQUIPMENT":
 			case "TREASURE":
@@ -630,7 +621,7 @@ public class MainFrameController {
 						break;
 					case "STAMINA":
 						i++;
-						pj.recevoirDegats(Integer.parseInt(keyWords.get(i)));
+						pj.decreaseStamina(Integer.parseInt(keyWords.get(i)));
 						break;
 					}
 					break;
@@ -677,7 +668,7 @@ public class MainFrameController {
 					switch(keyWords.get(i)) {
 					case "STAMINA":
 						i++;
-						pj.recevoirDegats(Integer.parseInt(keyWords.get(i)));
+						pj.decreaseStamina(Integer.parseInt(keyWords.get(i)));
 						break;
 					}
 					break;
@@ -705,8 +696,8 @@ public class MainFrameController {
 		case "EQUIPMENTEXCHANGE":
 			mainFrame.getNextNumberPanel().setNextButton(0);
 			if(pj.getEquipment().size() == 4 && pj.getTreasure().size() == 0) {
-				mainFrame.setText();
-				mainFrame.getUserFeedback().setText("Vous ne pouvez abandonner aucune pièce de votre équipement.");
+				mainFrame.getInteractionPanel().setText();
+				mainFrame.getInteractionPanel().getUserFeedback().setText("Vous ne pouvez abandonner aucune pièce de votre équipement.");
 				for(int i = 0 ; i < keyWords.size() ; i++) {
 					if(keyWords.get(i).equalsIgnoreCase("NEXT")) {
 						i++;
@@ -717,66 +708,66 @@ public class MainFrameController {
 				setTextNumero(currentNumero);
 			}
 			else {
-				mainFrame.setEquipmentChange();
-				mainFrame.getEquipmentExchangeOuiButton().addActionListener(new EquipmentChangeButtonListener());
-				mainFrame.getEquipmentExchangeNonButton().addActionListener(new EquipmentChangeButtonListener());
+				mainFrame.getInteractionPanel().setEquipmentChange();
+				mainFrame.getInteractionPanel().getEquipmentExchangeOuiButton().addActionListener(new EquipmentChangeButtonListener());
+				mainFrame.getInteractionPanel().getEquipmentExchangeNonButton().addActionListener(new EquipmentChangeButtonListener());
 			}
 			waitingForUser = true;
 			break;
 		case "EQUIPMENTSWITCH":
 			mainFrame.getNextNumberPanel().setNextButton(0);
-			mainFrame.setEquipmentSwitch();
+			mainFrame.getInteractionPanel().setEquipmentSwitch();
 			setEquipmentSwitchText();
-			mainFrame.getEquipment1SwitchButton().addActionListener(new SwitchEquipmentButtonListener());
-			mainFrame.getEquipment2SwitchButton().addActionListener(new SwitchEquipmentButtonListener());
+			mainFrame.getInteractionPanel().getEquipment1SwitchButton().addActionListener(new SwitchEquipmentButtonListener());
+			mainFrame.getInteractionPanel().getEquipment2SwitchButton().addActionListener(new SwitchEquipmentButtonListener());
 			waitingForUser = true;
 			break;
 		case "EQUIPMENTDROP":
 			mainFrame.getNextNumberPanel().setNextButton(0);
-			mainFrame.setEquipmentDrop();
+			mainFrame.getInteractionPanel().setEquipmentDrop();
 			setEquipmentDropText();
-			mainFrame.getEquipmentDropYesButton().addActionListener(new DropEquipmentButtonListener());
-			mainFrame.getEquipmentDropNoButton().addActionListener(new DropEquipmentButtonListener());
+			mainFrame.getInteractionPanel().getEquipmentDropYesButton().addActionListener(new DropEquipmentButtonListener());
+			mainFrame.getInteractionPanel().getEquipmentDropNoButton().addActionListener(new DropEquipmentButtonListener());
 			waitingForUser = true;
 			break;
 		case "DIVERSIONDROP":
 			mainFrame.getNextNumberPanel().setNextButton(0);
-			mainFrame.setChoiceEquipmentChange();
+			mainFrame.getInteractionPanel().setChoiceEquipmentChange();
 			if(pj.getEquipment().size() == 4 && pj.getTreasure().size() == 0) {
-				mainFrame.getListeEquipementJetable().addItem("1 Pièce d'Or");
+				mainFrame.getInteractionPanel().getListeEquipementJetable().addItem("1 Pièce d'Or");
 			}
 			else {
 				for(int i = 4 ; i < pj.getEquipment().size() ; i++) {
-					mainFrame.getListeEquipementJetable().addItem(pj.getEquipment().get(i));
+					mainFrame.getInteractionPanel().getListeEquipementJetable().addItem(pj.getEquipment().get(i));
 				}
 				for(int i = 0 ; i < pj.getTreasure().size() ; i++) {
-					mainFrame.getListeEquipementJetable().addItem(pj.getTreasure().get(i));
+					mainFrame.getInteractionPanel().getListeEquipementJetable().addItem(pj.getTreasure().get(i));
 				}
 			}
-			Utilitaire.removeAllListeners(mainFrame.getValiderEquipementJetable());
-			mainFrame.getValiderEquipementJetable().addActionListener(new DiversionDropButtonListener());
+			Utilitaire.removeAllListeners(mainFrame.getInteractionPanel().getValiderEquipementJetable());
+			mainFrame.getInteractionPanel().getValiderEquipementJetable().addActionListener(new DiversionDropButtonListener());
 			waitingForUser = true;
 			break;
 		case "BUYOPTION":
 			mainFrame.getNextNumberPanel().setNextButton(0);
-			mainFrame.setBuyOption();
+			mainFrame.getInteractionPanel().setBuyOption();
 			setBuyOptionText();
-			mainFrame.getYesBuyOption().addActionListener(new BuyOptionButtonListener());
-			mainFrame.getNoBuyOption().addActionListener(new BuyOptionButtonListener());
+			mainFrame.getInteractionPanel().getYesBuyOption().addActionListener(new BuyOptionButtonListener());
+			mainFrame.getInteractionPanel().getNoBuyOption().addActionListener(new BuyOptionButtonListener());
 			waitingForUser = true;
 			break;
 		case "MEAL":
 			mainFrame.getNextNumberPanel().setNextButton(0);
-			mainFrame.setChoiceMeal();
-			mainFrame.getOuiPrendreRepas().addActionListener(new PrendreUnRepasButtonListener());
-			mainFrame.getNonPrendreRepas().addActionListener(new NePasPrendreUnRepasButtonListener());
+			mainFrame.getInteractionPanel().setChoiceMeal();
+			mainFrame.getInteractionPanel().getOuiPrendreRepas().addActionListener(new PrendreUnRepasButtonListener());
+			mainFrame.getInteractionPanel().getNonPrendreRepas().addActionListener(new NePasPrendreUnRepasButtonListener());
 			waitingForUser = true;
 			break;
 		case "MEALX":
 			mainFrame.getNextNumberPanel().setNextButton(0);
-			mainFrame.setChoiceMeal();
-			mainFrame.getOuiPrendreRepas().addActionListener(new PrendreUnRepasButtonListener());
-			mainFrame.getNonPrendreRepas().addActionListener(new NePasPrendreUnRepasButtonListener());
+			mainFrame.getInteractionPanel().setChoiceMeal();
+			mainFrame.getInteractionPanel().getOuiPrendreRepas().addActionListener(new PrendreUnRepasButtonListener());
+			mainFrame.getInteractionPanel().getNonPrendreRepas().addActionListener(new NePasPrendreUnRepasButtonListener());
 			waitingForUser = true;
 			break;
 		case "TAKEMEAL":
@@ -789,14 +780,14 @@ public class MainFrameController {
 			break;
 		case "SHAREMEAL":
 			mainFrame.getNextNumberPanel().setNextButton(0);
-			mainFrame.setChoiceMeal();
-			mainFrame.getOuiPrendreRepas().addActionListener(new PrendreUnRepasButtonListener());
-			mainFrame.getNonPrendreRepas().addActionListener(new NePasPrendreUnRepasButtonListener());
+			mainFrame.getInteractionPanel().setChoiceMeal();
+			mainFrame.getInteractionPanel().getOuiPrendreRepas().addActionListener(new PrendreUnRepasButtonListener());
+			mainFrame.getInteractionPanel().getNonPrendreRepas().addActionListener(new NePasPrendreUnRepasButtonListener());
 			break;
 		case "TRAP":
-			mainFrame.setTest();
-			mainFrame.setdamageDice();
-			mainFrame.getAleatoireButton().addActionListener(new DegatsAleatoireButtonListener());
+			mainFrame.getInteractionPanel().setTest();
+			mainFrame.getInteractionPanel().setdamageDice();
+			mainFrame.getInteractionPanel().getAleatoireButton().addActionListener(new DegatsAleatoireButtonListener());
 			break;
 		case "BONUS":
 			for(int i = 1 ; i < keyWords.size() ; i++) {
@@ -807,7 +798,7 @@ public class MainFrameController {
 					break;
 				case "SKILLRELATIVE":
 					i++;
-					if(pj.getSkill() < pj.getHabileteDepart()-Integer.parseInt(keyWords.get(i))) pj.setHabilete(pj.getHabileteDepart()-Integer.parseInt(keyWords.get(i)));
+					if(pj.getSkill() < pj.getStartingSkill()-Integer.parseInt(keyWords.get(i))) pj.setSkill(pj.getStartingSkill()-Integer.parseInt(keyWords.get(i)));
 					break;
 				case "STAMINA":
 					i++;
@@ -815,7 +806,7 @@ public class MainFrameController {
 					break;
 				case "STAMINARELATIVE":
 					i++;
-					if(pj.getStamina() < pj.getEnduranceDepart()-Integer.parseInt(keyWords.get(i))) pj.setEndurance(pj.getEnduranceDepart()-Integer.parseInt(keyWords.get(i)));
+					if(pj.getStamina() < pj.getStartingStamina()-Integer.parseInt(keyWords.get(i))) pj.setStamina(pj.getStartingStamina()-Integer.parseInt(keyWords.get(i)));
 					break;
 				case "LUCK":
 					i++;
@@ -823,7 +814,7 @@ public class MainFrameController {
 					break;
 				case "LUCKRELATIVE":
 					i++;
-					if(pj.getLuck() < pj.getChanceDepart()-Integer.parseInt(keyWords.get(i))) pj.setChance(pj.getChanceDepart()-Integer.parseInt(keyWords.get(i)));
+					if(pj.getLuck() < pj.getStartingLuck()-Integer.parseInt(keyWords.get(i))) pj.setLuck(pj.getStartingLuck()-Integer.parseInt(keyWords.get(i)));
 					break;
 				default:
 					break;
@@ -849,7 +840,7 @@ public class MainFrameController {
 					break;
 				case "STAMINA":
 					i++;
-					pj.recevoirDegats(Integer.parseInt(keyWords.get(i)));
+					pj.decreaseStamina(Integer.parseInt(keyWords.get(i)));
 					break;
 				case "LUCK":
 					break;
@@ -870,30 +861,30 @@ public class MainFrameController {
 			break;
 		case "GAMBLE":
 			mainFrame.getNextNumberPanel().setNextButton(0);
-			mainFrame.setGamble();
+			mainFrame.getInteractionPanel().setGamble();
 			setGambleParameters();
-			mainFrame.getValidateGambleValue().addActionListener(new ValidateGambleButtonListener());
+			mainFrame.getInteractionPanel().getValidateGambleValue().addActionListener(new ValidateGambleButtonListener());
 			waitingForUser = true;
 			break;
 		case "CHOICE":
 			int compteur = 1;
 			if(keyWords.get(1).equalsIgnoreCase("ESCAPE")) {
 				mainFrame.getNextNumberPanel().setNextButton(0);
-				mainFrame.setFightOrEscape();
-				mainFrame.getChoixCombattre().addActionListener(new ChoixCombattreButtonListener());
-				mainFrame.getChoixFuir().addActionListener(new FuiteAvantCombatButtonListener());
+				mainFrame.getInteractionPanel().setFightOrEscape();
+				mainFrame.getInteractionPanel().getChoixCombattre().addActionListener(new ChoixCombattreButtonListener());
+				mainFrame.getInteractionPanel().getChoixFuir().addActionListener(new FuiteAvantCombatButtonListener());
 			}
 			else if(keyWords.get(1).equalsIgnoreCase("MEAL")) {
 				mainFrame.getNextNumberPanel().setNextButton(0);
-				mainFrame.setChoiceMeal();
-				mainFrame.getOuiPrendreRepas().addActionListener(new PrendreUnRepasChoiceButtonListener());
-				mainFrame.getNonPrendreRepas().addActionListener(new NePasPrendreUnRepasChoiceButtonListener());
+				mainFrame.getInteractionPanel().setChoiceMeal();
+				mainFrame.getInteractionPanel().getOuiPrendreRepas().addActionListener(new PrendreUnRepasChoiceButtonListener());
+				mainFrame.getInteractionPanel().getNonPrendreRepas().addActionListener(new NePasPrendreUnRepasChoiceButtonListener());
 			}
 			else if(keyWords.get(1).equalsIgnoreCase("MEALX")) {
 				mainFrame.getNextNumberPanel().setNextButton(0);
-				mainFrame.setChoiceMeal();
-				mainFrame.getOuiPrendreRepas().addActionListener(new PrendreUnRepasXButtonListener());
-				mainFrame.getNonPrendreRepas().addActionListener(new NePasPrendreUnRepasXButtonListener());
+				mainFrame.getInteractionPanel().setChoiceMeal();
+				mainFrame.getInteractionPanel().getOuiPrendreRepas().addActionListener(new PrendreUnRepasXButtonListener());
+				mainFrame.getInteractionPanel().getNonPrendreRepas().addActionListener(new NePasPrendreUnRepasXButtonListener());
 			}
 			else {
 				while(Utilitaire.isNumeric(keyWords.get(compteur))) {
@@ -905,17 +896,17 @@ public class MainFrameController {
 				setTextNumero(currentNumero);
 				switch(keyWords.get(compteur)) {
 				case "TEST":
-					mainFrame.setTest();
-					mainFrame.getAleatoireButton().addActionListener(new TestAleatoireChoiceButtonListener());
+					mainFrame.getInteractionPanel().setTest();
+					mainFrame.getInteractionPanel().getAleatoireButton().addActionListener(new TestAleatoireChoiceButtonListener());
 					switch(keyWords.get(compteur+1)) {
 					case "SKILL":
-						mainFrame.setTestHabilete();
+						mainFrame.getInteractionPanel().setTestHabilete();
 						break;
 					case "STAMINA":
-						mainFrame.setTestEndurance();
+						mainFrame.getInteractionPanel().setTestEndurance();
 						break;
 					case "LUCK":
-						mainFrame.setTestChance();
+						mainFrame.getInteractionPanel().setTestChance();
 						break;
 					default:
 						System.out.println("ERROR");
@@ -926,8 +917,8 @@ public class MainFrameController {
 				case "LOOTCHOICE":
 					break;
 				case "ESCAPE":
-					mainFrame.setEscape();
-					mainFrame.getFuir().addActionListener(new FuiteAvantCombatButtonListener());
+					mainFrame.getInteractionPanel().setEscape();
+					mainFrame.getInteractionPanel().getFuir().addActionListener(new FuiteAvantCombatButtonListener());
 					break;
 				default:
 					System.out.println("ERROR");
@@ -950,34 +941,16 @@ public class MainFrameController {
 				tempAction.remove(1);
 			}
 			setAction(currentAction);
-
-			/*if(keyWords.get(1).equalsIgnoreCase("LOOT")) {
-				switch(keyWords.get(2)) {
-				case "GOLD":
-					break;
-				case "EQUIPMENT":
-					pj.addEquipment(keyWords.get(3));
-					break;
-				default:
-					System.out.println("ERROR");
-				}
-				majHero();
-				for(int i = 0 ; i < 4 ; i++) {
-					keyWords.remove(0);
-				}
-				keyWords = tempAction;
-				setAction(keyWords);
-			}*/
 			break;
 		case "GAMEOVER":
 			mainFrame.getNextNumberPanel().setNextButton(0);
 			mainFrame.resetAffichage();
-			mainFrame.setGameOver();
+			mainFrame.getInteractionPanel().setGameOver();
 			break;
 		case "VICTORY":
 			mainFrame.getNextNumberPanel().setNextButton(0);
 			mainFrame.resetAffichage();
-			mainFrame.setVictory();
+			mainFrame.getInteractionPanel().setVictory();
 			break;
 		default:
 			System.out.println("ERROR");
@@ -1129,8 +1102,8 @@ public class MainFrameController {
 		public void actionPerformed(ActionEvent e) {
 			mainFrame.interactionPanelRemoveAll();
 			if(currentAction.get(0).equalsIgnoreCase("FIGHTZ") && currentAction.get(1).equalsIgnoreCase("RANDOMMONSTER")) {
-				mainFrame.setEnterPreviousNumero();
-				mainFrame.getValidateInputUserPreviousNumber().addActionListener(new ValidateInputUserPreviousNumberButtonListener());
+				mainFrame.getInteractionPanel().setEnterPreviousNumero();
+				mainFrame.getInteractionPanel().getValidateInputUserPreviousNumber().addActionListener(new ValidateInputUserPreviousNumberButtonListener());
 			}
 			else {
 				currentAction.removeAll(currentAction);
@@ -1153,16 +1126,18 @@ public class MainFrameController {
 			switch(currentAction.get(1)) {
 			case "SKILL":
 				mainFrame.getNextNumberPanel().setNextButton(1);
-				mainFrame.setResultatTestAleatoire();
+				mainFrame.getInteractionPanel().setResultatTestAleatoire();
+				mainFrame.getInteractionPanel().getDice1().rollTheDice(valueDice1);
+				mainFrame.getInteractionPanel().getDice2().rollTheDice(valueDice2);
 				if(valueDices <= pj.getSkill()) {
 					currentNumero.addNumero(Integer.parseInt(currentAction.get(2)));
-					mainFrame.getResultatAleatoireTestLabel().setText("Réussite !");
-					mainFrame.getResultatAleatoireTestLabel().setForeground(new Color(103,221,51));
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setText("Réussite !");
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setForeground(new Color(103,221,51));
 				}
 				else {
 					currentNumero.addNumero(Integer.parseInt(currentAction.get(3)));
-					mainFrame.getResultatAleatoireTestLabel().setText("Échec !");
-					mainFrame.getResultatAleatoireTestLabel().setForeground(Color.RED);
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setText("Échec !");
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setForeground(Color.RED);
 				}
 				setTextNumero(currentNumero);
 				break;
@@ -1174,9 +1149,9 @@ public class MainFrameController {
 				}
 				else {
 					if(currentNumero.getNumero() == 316) {
-						mainFrame.setChoiceMeal();
-						mainFrame.getOuiPrendreRepas().addActionListener(new PrendreUnRepasButtonListener());
-						mainFrame.getNonPrendreRepas().addActionListener(new NePasPrendreUnRepasButtonListener());
+						mainFrame.getInteractionPanel().setChoiceMeal();
+						mainFrame.getInteractionPanel().getOuiPrendreRepas().addActionListener(new PrendreUnRepasButtonListener());
+						mainFrame.getInteractionPanel().getNonPrendreRepas().addActionListener(new NePasPrendreUnRepasButtonListener());
 					}
 					else {
 						mainFrame.getNextNumberPanel().setNextButton(1);
@@ -1187,72 +1162,72 @@ public class MainFrameController {
 				break;
 			case "LUCK":
 				mainFrame.getNextNumberPanel().setNextButton(1);
-				mainFrame.setResultatTestAleatoire();
-				mainFrame.getDice1().rollTheDice(valueDice1);
-				mainFrame.getDice2().rollTheDice(valueDice2);
+				mainFrame.getInteractionPanel().setResultatTestAleatoire();
+				mainFrame.getInteractionPanel().getDice1().rollTheDice(valueDice1);
+				mainFrame.getInteractionPanel().getDice2().rollTheDice(valueDice2);
 				if(valueDices <= pj.getLuck()) {
 					currentNumero.addNumero(Integer.parseInt(currentAction.get(2)));
-					mainFrame.getResultatAleatoireTestLabel().setText("Réussite !");
-					mainFrame.getResultatAleatoireTestLabel().setForeground(new Color(103,221,51));
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setText("Réussite !");
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setForeground(new Color(103,221,51));
 				}
 				else {
 					currentNumero.addNumero(Integer.parseInt(currentAction.get(3)));
-					mainFrame.getResultatAleatoireTestLabel().setText("Échec !");
-					mainFrame.getResultatAleatoireTestLabel().setForeground(Color.RED);
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setText("Échec !");
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setForeground(Color.RED);
 				}
 				setTextNumero(currentNumero);
-				pj.decrementChance();
+				pj.decrementLuck();
 				heroPanelController.majHero();
 				break;
 			case "MULTITEST":
 				mainFrame.getNextNumberPanel().setNextButton(1);
-				mainFrame.setResultatTestAleatoire();
+				mainFrame.getInteractionPanel().setResultatTestAleatoire();
 				if(valueDices <= pj.getStamina() && valueDices <= pj.getLuck()) {
 					currentNumero.addNumero(Integer.parseInt(currentAction.get(4)));
-					mainFrame.getResultatAleatoireTestLabel().setText("Réussite !");
-					mainFrame.getResultatAleatoireTestLabel().setForeground(new Color(103,221,51));
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setText("Réussite !");
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setForeground(new Color(103,221,51));
 				}
 				else {
 					currentNumero.addNumero(Integer.parseInt(currentAction.get(5)));
-					mainFrame.getResultatAleatoireTestLabel().setText("Échec !");
-					mainFrame.getResultatAleatoireTestLabel().setForeground(Color.RED);
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setText("Échec !");
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setForeground(Color.RED);
 				}
 				setTextNumero(currentNumero);
 				heroPanelController.majHero();
 				break;
 			case "MULTITESTLUCK":
-				pj.decrementChance();
+				pj.decrementLuck();
 				testCount++;
-				mainFrame.setMultiTestRandomResult();
+				mainFrame.getInteractionPanel().setMultiTestRandomResult();
 				if(valueDices <= pj.getLuck()) {
-					mainFrame.getResultatAleatoireTestLabel().setText("Réussite !");
-					mainFrame.getResultatAleatoireTestLabel().setForeground(new Color(103,221,51));
-					mainFrame.getNextTestMultitest().addActionListener(new NextTestMultiTestButtonListener());
-					mainFrame.getNextTestMultitest().setActionCommand("win");
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setText("Réussite !");
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setForeground(new Color(103,221,51));
+					mainFrame.getInteractionPanel().getNextTestMultitest().addActionListener(new NextTestMultiTestButtonListener());
+					mainFrame.getInteractionPanel().getNextTestMultitest().setActionCommand("win");
 				}
 				else {
-					mainFrame.getResultatAleatoireTestLabel().setText("Échec !");
-					mainFrame.getResultatAleatoireTestLabel().setForeground(Color.RED);
-					mainFrame.getNextTestMultitest().addActionListener(new NextTestMultiTestButtonListener());
-					mainFrame.getNextTestMultitest().setActionCommand("lose");
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setText("Échec !");
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setForeground(Color.RED);
+					mainFrame.getInteractionPanel().getNextTestMultitest().addActionListener(new NextTestMultiTestButtonListener());
+					mainFrame.getInteractionPanel().getNextTestMultitest().setActionCommand("lose");
 				}
 				heroPanelController.majHero();
 				break;
 			case "NONE[1-3-5,2-4-6]":
 				System.out.println(valueDice1);
 				mainFrame.getNextNumberPanel().setNextButton(1);
-				mainFrame.setResultatTestAleatoire();
+				mainFrame.getInteractionPanel().setResultatTestAleatoire();
 				if(valueDice1%2 == 0) {
-					mainFrame.getResultatAleatoireTestLabel().setText("Réussite !");
-					mainFrame.getResultatAleatoireTestLabel().setForeground(new Color(103,221,51));
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setText("Réussite !");
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setForeground(new Color(103,221,51));
 					pj.decreaseSkill(1);
-					pj.recevoirDegats(2);
+					pj.decreaseStamina(2);
 				}
 				else {
-					mainFrame.getResultatAleatoireTestLabel().setText("Échec !");
-					mainFrame.getResultatAleatoireTestLabel().setForeground(Color.RED);
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setText("Échec !");
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setForeground(Color.RED);
 					pj.decreaseSkill(3);
-					pj.recevoirDegats(1);
+					pj.decreaseStamina(1);
 				}
 				currentNumero.addNumero(Integer.parseInt(currentAction.get(3)));
 				heroPanelController.majHero();
@@ -1261,22 +1236,22 @@ public class MainFrameController {
 			case "NONE[1-3,4-5,6]":
 				System.out.println(valueDice1);
 				mainFrame.getNextNumberPanel().setNextButton(1);
-				mainFrame.setResultatTestAleatoire();
+				mainFrame.getInteractionPanel().setResultatTestAleatoire();
 				if(valueDice1 < 4) {
 					currentNumero.addNumero(Integer.parseInt(currentAction.get(2)));
-					mainFrame.getResultatAleatoireTestLabel().setText("Réussite !");
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setText("Réussite !");
 					pj.addLuck(2);
-					mainFrame.getResultatAleatoireTestLabel().setForeground(new Color(103,221,51));
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setForeground(new Color(103,221,51));
 				}
 				else if(valueDice1 < 6) {
 					currentNumero.addNumero(Integer.parseInt(currentAction.get(3)));
-					mainFrame.getResultatAleatoireTestLabel().setText("Résultat en demi-teinte...");
-					mainFrame.getResultatAleatoireTestLabel().setForeground(new Color(57,147,232));
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setText("Résultat en demi-teinte...");
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setForeground(new Color(57,147,232));
 				}
 				else {
 					currentNumero.addNumero(Integer.parseInt(currentAction.get(4)));
-					mainFrame.getResultatAleatoireTestLabel().setText("Échec !");
-					mainFrame.getResultatAleatoireTestLabel().setForeground(Color.RED);
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setText("Échec !");
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setForeground(Color.RED);
 				}
 				heroPanelController.majHero();
 				setTextNumero(currentNumero);
@@ -1284,22 +1259,22 @@ public class MainFrameController {
 			case "NONE[1-2,3-4,5-6]":
 				System.out.println(valueDice1);
 				mainFrame.getNextNumberPanel().setNextButton(1);
-				mainFrame.setResultatTestAleatoire();
+				mainFrame.getInteractionPanel().setResultatTestAleatoire();
 				if(valueDice1 < 3) {
 					currentNumero.addNumero(Integer.parseInt(currentAction.get(2)));
-					mainFrame.getResultatAleatoireTestLabel().setText("Échec !");
-					mainFrame.getResultatAleatoireTestLabel().setForeground(Color.RED);
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setText("Échec !");
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setForeground(Color.RED);
 				}
 				else if(valueDice1 < 5) {
 					currentNumero.addNumero(Integer.parseInt(currentAction.get(3)));
-					mainFrame.getResultatAleatoireTestLabel().setText("Résultat en demi-teinte...");
-					mainFrame.getResultatAleatoireTestLabel().setForeground(new Color(57,147,232));
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setText("Résultat en demi-teinte...");
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setForeground(new Color(57,147,232));
 				}
 				else {
 					currentNumero.addNumero(Integer.parseInt(currentAction.get(4)));
-					mainFrame.getResultatAleatoireTestLabel().setText("Réussite !");
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setText("Réussite !");
 					pj.addLuck(2);
-					mainFrame.getResultatAleatoireTestLabel().setForeground(new Color(103,221,51));
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setForeground(new Color(103,221,51));
 				}
 				heroPanelController.majHero();
 				setTextNumero(currentNumero);
@@ -1307,32 +1282,32 @@ public class MainFrameController {
 			case "NONE[1-4,5-6]":
 				System.out.println(valueDice1);
 				mainFrame.getNextNumberPanel().setNextButton(1);
-				mainFrame.setResultatTestAleatoire();
+				mainFrame.getInteractionPanel().setResultatTestAleatoire();
 				if(valueDice1 < 5) {
 					currentNumero.addNumero(Integer.parseInt(currentAction.get(2)));
-					mainFrame.getResultatAleatoireTestLabel().setText("Réussite !");
-					mainFrame.getResultatAleatoireTestLabel().setForeground(new Color(103,221,51));
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setText("Réussite !");
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setForeground(new Color(103,221,51));
 				}
 				else {
 					currentNumero.addNumero(Integer.parseInt(currentAction.get(3)));
-					mainFrame.getResultatAleatoireTestLabel().setText("Échec !");
-					mainFrame.getResultatAleatoireTestLabel().setForeground(Color.RED);
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setText("Échec !");
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setForeground(Color.RED);
 				}
 				setTextNumero(currentNumero);
 				break;
 			case "NONE[1-5,6]":
 				System.out.println(valueDice1);
 				mainFrame.getNextNumberPanel().setNextButton(1);
-				mainFrame.setResultatTestAleatoire();
+				mainFrame.getInteractionPanel().setResultatTestAleatoire();
 				if(valueDice1 < 6) {
 					currentNumero.addNumero(Integer.parseInt(currentAction.get(2)));
-					mainFrame.getResultatAleatoireTestLabel().setText("Réussite !");
-					mainFrame.getResultatAleatoireTestLabel().setForeground(new Color(103,221,51));
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setText("Réussite !");
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setForeground(new Color(103,221,51));
 				}
 				else {
 					currentNumero.addNumero(Integer.parseInt(currentAction.get(3)));
-					mainFrame.getResultatAleatoireTestLabel().setText("Échec !");
-					mainFrame.getResultatAleatoireTestLabel().setForeground(Color.RED);
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setText("Échec !");
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setForeground(Color.RED);
 				}
 				setTextNumero(currentNumero);
 				break;
@@ -1356,9 +1331,9 @@ public class MainFrameController {
 					setTextNumero(currentNumero);
 				}
 				else {
-					mainFrame.setTest();
-					mainFrame.setTestChance();
-					mainFrame.getAleatoireButton().addActionListener(new TestAleatoireButtonListener());
+					mainFrame.getInteractionPanel().setTest();
+					mainFrame.getInteractionPanel().setTestChance();
+					mainFrame.getInteractionPanel().getAleatoireButton().addActionListener(new TestAleatoireButtonListener());
 				}
 			}
 			else {
@@ -1382,24 +1357,26 @@ public class MainFrameController {
 			System.out.println(valueDices);
 			if(Integer.parseInt(currentAction.get(2)) == -1) mainFrame.getNextNumberPanel().setNextButton(-1);
 			else mainFrame.getNextNumberPanel().setNextButton(1);
-			mainFrame.setResultatTestAleatoire();
+			mainFrame.getInteractionPanel().setResultatTestAleatoire();
 			switch(currentAction.get(1)) {
 			case "SKILL":
+				mainFrame.getInteractionPanel().getDice1().rollTheDice(valueDice1);
+				mainFrame.getInteractionPanel().getDice2().rollTheDice(valueDice2);
 				if(valueDices <= pj.getSkill()) {
 					if(Integer.parseInt(currentAction.get(2)) != -1) currentNumero.addNumero(Integer.parseInt(currentAction.get(2)));
-					mainFrame.getResultatAleatoireTestLabel().setText("Réussite !");
-					mainFrame.getResultatAleatoireTestLabel().setForeground(new Color(103,221,51));
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setText("Réussite !");
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setForeground(new Color(103,221,51));
 				}
 				else {
-					mainFrame.getResultatAleatoireTestLabel().setText("Échec !");
-					mainFrame.getResultatAleatoireTestLabel().setForeground(Color.RED);
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setText("Échec !");
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setForeground(Color.RED);
 					for(int i = 3 ; i < currentAction.size() ; i++) {
 						switch(currentAction.get(i)) {
 						case "SKILL":
 							pj.decreaseSkill(Integer.parseInt(currentAction.get(i+1)));
 							break;
 						case "STAMINA":
-							pj.recevoirDegats(Integer.parseInt(currentAction.get(i+1)));
+							pj.decreaseStamina(Integer.parseInt(currentAction.get(i+1)));
 							break;
 						}
 					}
@@ -1407,15 +1384,17 @@ public class MainFrameController {
 				}
 				break;
 			case "LUCK":
-				pj.decrementChance();
+				pj.decrementLuck();
+				mainFrame.getInteractionPanel().getDice1().rollTheDice(valueDice1);
+				mainFrame.getInteractionPanel().getDice2().rollTheDice(valueDice2);
 				if(valueDices <= pj.getLuck()) {
 					if(Integer.parseInt(currentAction.get(2)) != -1) currentNumero.addNumero(Integer.parseInt(currentAction.get(2)));
-					mainFrame.getResultatAleatoireTestLabel().setText("Réussite !");
-					mainFrame.getResultatAleatoireTestLabel().setForeground(new Color(103,221,51));
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setText("Réussite !");
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setForeground(new Color(103,221,51));
 				}
 				else {
-					mainFrame.getResultatAleatoireTestLabel().setText("Échec !");
-					mainFrame.getResultatAleatoireTestLabel().setForeground(Color.RED);
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setText("Échec !");
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setForeground(Color.RED);
 					for(int i = 3 ; i < currentAction.size() ; i++) {
 						switch(currentAction.get(i)) {
 						case "SKILL":
@@ -1424,7 +1403,7 @@ public class MainFrameController {
 							break;
 						case "STAMINA":
 							i++;
-							pj.recevoirDegats(Integer.parseInt(currentAction.get(i)));
+							pj.decreaseStamina(Integer.parseInt(currentAction.get(i)));
 							break;
 						}
 					}
@@ -1452,12 +1431,12 @@ public class MainFrameController {
 			System.out.println(valueDices);
 			switch(currentAction.get(1)) {
 			case "LUCK":
-				pj.decrementChance();
+				pj.decrementLuck();
 				heroPanelController.majHero();
 				if(valueDices <= pj.getLuck()) {
-					mainFrame.setResultatTestAleatoire();
-					mainFrame.getResultatAleatoireTestLabel().setText("Réussite !");
-					mainFrame.getResultatAleatoireTestLabel().setForeground(new Color(103,221,51));
+					mainFrame.getInteractionPanel().setResultatTestAleatoire();
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setText("Réussite !");
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setForeground(new Color(103,221,51));
 					int compteur = 0;
 					for(int i = 0 ; i < currentAction.size() ; i++) {
 						if(currentAction.get(i).equalsIgnoreCase("NEXT")) {
@@ -1473,11 +1452,11 @@ public class MainFrameController {
 					setTextNumero(currentNumero);
 				}
 				else {
-					mainFrame.setNextTestAleatoire();
-					mainFrame.getResultatAleatoireTestLabel().setText("Échec !");
-					mainFrame.getResultatAleatoireTestLabel().setForeground(Color.RED);
-					mainFrame.getNextTestZ().addActionListener(new NextTestZListener());
-					pj.recevoirDegats(1);
+					mainFrame.getInteractionPanel().setNextTestAleatoire();
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setText("Échec !");
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setForeground(Color.RED);
+					mainFrame.getInteractionPanel().getNextTestZ().addActionListener(new NextTestZListener());
+					pj.decreaseStamina(1);
 					heroPanelController.majHero();
 				}
 				break;
@@ -1522,19 +1501,21 @@ public class MainFrameController {
 				break;
 			case "LUCK":
 				mainFrame.getNextNumberPanel().setNextButton(1);
-				mainFrame.setResultatTestAleatoire();
+				mainFrame.getInteractionPanel().setResultatTestAleatoire();
+				mainFrame.getInteractionPanel().getDice1().rollTheDice(valueDice1);
+				mainFrame.getInteractionPanel().getDice2().rollTheDice(valueDice2);
 				if(valueDices <= pj.getLuck()) {
 					currentNumero.addNumero(Integer.parseInt(currentAction.get(4)));
-					mainFrame.getResultatAleatoireTestLabel().setText("Réussite !");
-					mainFrame.getResultatAleatoireTestLabel().setForeground(new Color(103,221,51));
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setText("Réussite !");
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setForeground(new Color(103,221,51));
 				}
 				else {
 					currentNumero.addNumero(Integer.parseInt(currentAction.get(5)));
-					mainFrame.getResultatAleatoireTestLabel().setText("Échec !");
-					mainFrame.getResultatAleatoireTestLabel().setForeground(Color.RED);
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setText("Échec !");
+					mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setForeground(Color.RED);
 				}
 				setTextNumero(currentNumero);
-				pj.decrementChance();
+				pj.decrementLuck();
 				heroPanelController.majHero();
 				break;
 			default:
@@ -1567,29 +1548,33 @@ public class MainFrameController {
 			System.out.println("pj : "+valueDicesPj);
 			if(valueDicesPj != valueDicesEnnemi) {
 				if(pj.getEquipment().contains("Bouclier Rond au Croissant en Fer") && valueDicesPj < valueDicesEnnemi) {
-					mainFrame.setFightShield();
-					mainFrame.getAleatoireButton().addActionListener(new ResulatShieldListener());
+					mainFrame.getFightPanel().setFightShield();
+					Utilitaire.removeAllListeners(mainFrame.getInteractionPanel().getAleatoireButton());
+					mainFrame.getFightPanel().getShieldRandom().addActionListener(new ResulatShieldListener());
 				}
 				else {
-					mainFrame.setFightAleatoire();
-					mainFrame.getOuiTenterChanceFight().addActionListener(new OuiTenterChanceFightButtonListener());
-					mainFrame.getNonTenterChanceFight().addActionListener(new NonTenterChanceFightButtonListener());
+					mainFrame.getFightPanel().setFightAleatoire();
+					Utilitaire.removeAllListeners(mainFrame.getFightPanel().getYesTryYourLuck());
+					mainFrame.getFightPanel().getYesTryYourLuck().addActionListener(new OuiTenterChanceFightButtonListener());
+					Utilitaire.removeAllListeners(mainFrame.getFightPanel().getNoTryYourLuck());
+					mainFrame.getFightPanel().getNoTryYourLuck().addActionListener(new NonTenterChanceFightButtonListener());
 					if(valueDicesPj > valueDicesEnnemi) {
-						mainFrame.getResultatAssaut().setText("Assaut remporté !");
-						mainFrame.getResultatAssaut().setForeground(new Color(103,221,51));
+						mainFrame.getFightPanel().getAssaultResult().setText("Assaut remporté !");
+						mainFrame.getFightPanel().getAssaultResult().setForeground(new Color(103,221,51));
 					}
 					else {
-						mainFrame.getResultatAssaut().setText("Assaut perdu...");
-						mainFrame.getResultatAssaut().setForeground(Color.RED);
+						mainFrame.getFightPanel().getAssaultResult().setText("Assaut perdu...");
+						mainFrame.getFightPanel().getAssaultResult().setForeground(Color.RED);
 						if(currentNumero.getNumero() == 230) ghoulWound++;
 					}
 				}
 			}
 			else {
-				mainFrame.setFightAleatoireEgalite();
-				mainFrame.getResultatAssaut().setText("Égalité !");
-				mainFrame.getContinuer().addActionListener(new AssautSuivantEgaliteListener());
-				mainFrame.getResultatAssaut().setForeground(new Color(57,147,232));
+				mainFrame.getFightPanel().setFightAleatoireEgalite();
+				mainFrame.getFightPanel().getAssaultResult().setText("Égalité !");
+				mainFrame.getFightPanel().getAssaultResult().setForeground(new Color(57,147,232));
+				Utilitaire.removeAllListeners(mainFrame.getFightPanel().getNextAssaultDraw());
+				mainFrame.getFightPanel().getNextAssaultDraw().addActionListener(new AssautSuivantEgaliteListener());
 			}
 			mainFrame.getFightPanel().revalidate();
 			mainFrame.getFightPanel().repaint();		
@@ -1625,7 +1610,7 @@ public class MainFrameController {
 			default:
 				System.out.println("ERROR SWITCH RANDOMMONSTER");
 			}
-			mainFrame.getAleatoireButton().addActionListener(new FightAleatoireButtonListener());
+			mainFrame.getFightPanel().getFightRandom().addActionListener(new FightAleatoireButtonListener());
 			mainFrame.getInteractionPanel().revalidate();
 			mainFrame.getInteractionPanel().repaint();
 		}
@@ -1635,10 +1620,10 @@ public class MainFrameController {
 
 		public void actionPerformed(ActionEvent e) {
 			mainFrame.fightPanelRemoveAll();
-			mainFrame.majFight();
-			mainFrame.getAleatoireButton().addActionListener(new FightAleatoireButtonListener());
-			if(currentNumero.getNumero() == 179 &&  nombreAssaut >= 4) mainFrame.getFuite().setEnabled(false);
-			else if(currentAction.get(0).equalsIgnoreCase("FIGHT") && Integer.parseInt(currentAction.get(5)) != -1 && nombreAssaut >= Integer.parseInt(currentAction.get(6))) mainFrame.getFuite().setEnabled(true);
+			mainFrame.getFightPanel().setFight();
+			mainFrame.getFightPanel().getFightRandom().addActionListener(new FightAleatoireButtonListener());
+			if(currentNumero.getNumero() == 179 &&  nombreAssaut >= 4) mainFrame.getEnnemiPanel().getEscape().setEnabled(false);
+			else if(currentAction.get(0).equalsIgnoreCase("FIGHT") && Integer.parseInt(currentAction.get(5)) != -1 && nombreAssaut >= Integer.parseInt(currentAction.get(6))) mainFrame.getEnnemiPanel().getEscape().setEnabled(true);
 			mainFrame.getFightPanel().revalidate();
 			mainFrame.getFightPanel().repaint();
 		}
@@ -1650,9 +1635,9 @@ public class MainFrameController {
 			mainFrame.fightPanelRemoveAll();
 			pj.decreaseLuck(1);
 			heroPanelController.majHero();
-			mainFrame.setTenterChanceFight();
-			mainFrame.getAleatoireButton().addActionListener(new OuiTenterChanceAleatoireFightButtonListener());
-			mainFrame.setTestChance();
+			mainFrame.getFightPanel().setTenterChanceFight();
+			Utilitaire.removeAllListeners(mainFrame.getFightPanel().getFightRandom());
+			mainFrame.getFightPanel().getTryYourLuckRandom().addActionListener(new OuiTenterChanceAleatoireFightButtonListener());
 			mainFrame.getFightPanel().revalidate();
 			mainFrame.getFightPanel().repaint();
 		}
@@ -1665,42 +1650,45 @@ public class MainFrameController {
 			int valueDice1 = Utilitaire.lancerSix();
 			int valueDice2 = Utilitaire.lancerSix();
 			int valueDices = valueDice1 + valueDice2;
-			mainFrame.setResultatChanceFight();
+			mainFrame.getFightPanel().setResultatChanceFight();
 			if(valueDicesPj > valueDicesEnnemi) {
 				if(valueDices <= pj.getLuck()) {
-					mainFrame.getResultatChance().setText("Réussite !");
-					mainFrame.getResultatChance().setForeground(new Color(103,221,51));
-					currentEnnemi.recevoirDegats(4);
+					mainFrame.getFightPanel().getTryYourLuckResult().setText("Réussite !");
+					mainFrame.getFightPanel().getTryYourLuckResult().setForeground(new Color(103,221,51));
+					currentEnnemi.decreaseStamina(4);
 				}
 				else {
-					mainFrame.getResultatChance().setText("Échec !");
-					mainFrame.getResultatChance().setForeground(Color.RED);
-					currentEnnemi.recevoirDegats(1);
+					mainFrame.getFightPanel().getTryYourLuckResult().setText("Échec !");
+					mainFrame.getFightPanel().getTryYourLuckResult().setForeground(Color.RED);
+					currentEnnemi.decreaseStamina(1);
 				}
 				if(currentEnnemi.getStamina() > 0) majEnnemi();
 				else {
-					currentEnnemi.setEndurance(0);
+					currentEnnemi.setStamina(0);
 					majEnnemi();
 					if(numeroCombat != nombreEnnemi) {
-						mainFrame.setNextFight();
-						mainFrame.getNextFightButton().addActionListener(new NextEnnemiButtonListener());
+						mainFrame.getFightPanel().setNextFight();
+						Utilitaire.removeAllListeners(mainFrame.getFightPanel().getNextEnnemiButton());
+						mainFrame.getFightPanel().getNextEnnemiButton().addActionListener(new NextEnnemiButtonListener());
 					}
 					else {
 						mainFrame.fightPanelRemoveAll();
 						if(currentAction.get(0).equalsIgnoreCase("FIGHTMEAL")) {
-							mainFrame.setFightMealWin();
-							mainFrame.getOuiRepasApresCombat().addActionListener(new PrendreUnRepasApresCombatButtonListener());
-							mainFrame.getNonRepasApresCombat().addActionListener(new NePasPrendreUnRepasApresCombatButtonListener());
+							mainFrame.getFightPanel().setFightMealWin();
+							Utilitaire.removeAllListeners(mainFrame.getFightPanel().getYesMealAfterFight());
+							mainFrame.getFightPanel().getYesMealAfterFight().addActionListener(new PrendreUnRepasApresCombatButtonListener());
+							Utilitaire.removeAllListeners(mainFrame.getFightPanel().getNoMealAfterFight());
+							mainFrame.getFightPanel().getNoMealAfterFight().addActionListener(new NePasPrendreUnRepasApresCombatButtonListener());
 						}
 						else {
-							mainFrame.setFightWin();
+							mainFrame.getFightPanel().setFightWin();
 							if(currentNumero.getNumero() == 179) visited179AndKill = true;
 							if(currentAction.get(0).equalsIgnoreCase("FIGHTZ") && currentAction.get(1).equalsIgnoreCase("RANDOMMONSTER")) {
 								mainFrame.getNextNumberPanel().setNextButton(-1);
 							}
 							else {
 								mainFrame.getNextNumberPanel().setNextButton(1);
-								mainFrame.getFuite().setEnabled(false);
+								mainFrame.getEnnemiPanel().getEscape().setEnabled(false);
 								if(currentAction.get(0).equalsIgnoreCase("FIGHT")) currentNumero.addNumero(Integer.parseInt(currentAction.get(currentAction.size()-3)));
 								if(currentAction.get(0).equalsIgnoreCase("FIGHTX")) currentNumero.addNumero(Integer.parseInt(currentAction.get(currentAction.size()-2)));
 								setTextNumero(currentNumero);
@@ -1712,19 +1700,19 @@ public class MainFrameController {
 			}
 			else if(valueDicesPj < valueDicesEnnemi) {
 				if(valueDices <= pj.getLuck()) {
-					mainFrame.getResultatChance().setText("Réussite !");
-					mainFrame.getResultatChance().setForeground(new Color(103,221,51));
-					if(!coupBloque) pj.recevoirDegats(1);
+					mainFrame.getFightPanel().getTryYourLuckResult().setText("Réussite !");
+					mainFrame.getFightPanel().getTryYourLuckResult().setForeground(new Color(103,221,51));
+					if(!coupBloque) pj.decreaseStamina(1);
 				}
 				else {
-					mainFrame.getResultatChance().setText("Échec !");
-					mainFrame.getResultatChance().setForeground(Color.RED);
-					if(coupBloque) pj.recevoirDegats(2);
-					else pj.recevoirDegats(3);
+					mainFrame.getFightPanel().getTryYourLuckResult().setText("Échec !");
+					mainFrame.getFightPanel().getTryYourLuckResult().setForeground(Color.RED);
+					if(coupBloque) pj.decreaseStamina(2);
+					else pj.decreaseStamina(3);
 				}
 				if(currentNumero.getNumero() == 230 && ghoulWound == 4) {
 					heroPanelController.majHero();
-					mainFrame.getContinuer().setVisible(false);
+					mainFrame.getFightPanel().getNextAssaultDraw().setVisible(false);
 					mainFrame.getNextNumberPanel().setNextButton(1);
 					currentNumero.addNumero(Integer.parseInt(currentAction.get(5)));
 					setTextNumero(currentNumero);
@@ -1734,24 +1722,26 @@ public class MainFrameController {
 				}
 				else if(pj.getStamina() > 0) heroPanelController.majHero();
 				else {
-					pj.setEndurance(0);
+					pj.setStamina(0);
 					heroPanelController.majHero();
+					mainFrame.getEnnemiPanel().getEscape().setEnabled(false);
 					if(currentNumero.getNumero() == 230) {
-						mainFrame.getContinuer().setVisible(false);
+						mainFrame.getFightPanel().getNextAssaultDraw().setVisible(false);
 						mainFrame.getNextNumberPanel().setNextButton(1);
 						currentNumero.addNumero(Integer.parseInt(currentAction.get(5)));
 						setTextNumero(currentNumero);
 					}
 					else {
-						mainFrame.setFightGameOver();
+						mainFrame.fightPanelRemoveAll();
+						mainFrame.getFightPanel().setFightGameOver();
 					}
 				}
 			}
 			if(currentEnnemi.getStamina() > 0 && pj.getStamina() > 0) {
-				mainFrame.getContinuer().addActionListener(new AssautSuivantChanceListener());
+				mainFrame.getFightPanel().getNextAssaultTryYourLuck().addActionListener(new AssautSuivantChanceListener());
 			}
-			if(currentNumero.getNumero() == 179 && nombreAssaut >= 4) mainFrame.getFuite().setEnabled(false);
-			else if(currentAction.get(0).equalsIgnoreCase("FIGHT") && Integer.parseInt(currentAction.get(5)) != -1 && nombreAssaut >= Integer.parseInt(currentAction.get(6))) mainFrame.getFuite().setEnabled(true);
+			if(currentNumero.getNumero() == 179 && nombreAssaut >= 4) mainFrame.getEnnemiPanel().getEscape().setEnabled(false);
+			else if(currentAction.get(0).equalsIgnoreCase("FIGHT") && Integer.parseInt(currentAction.get(5)) != -1 && nombreAssaut >= Integer.parseInt(currentAction.get(6))) mainFrame.getEnnemiPanel().getEscape().setEnabled(true);
 			mainFrame.getFightPanel().revalidate();
 			mainFrame.getFightPanel().repaint();
 		}
@@ -1763,30 +1753,33 @@ public class MainFrameController {
 		public void actionPerformed(ActionEvent e) {
 			mainFrame.fightPanelRemoveAll();
 			if(valueDicesPj > valueDicesEnnemi) {
-				currentEnnemi.recevoirDegats(2);
+				currentEnnemi.decreaseStamina(2);
 				if(currentEnnemi.getStamina() > 0) majEnnemi();
 				else {
-					currentEnnemi.setEndurance(0);
+					currentEnnemi.setStamina(0);
 					majEnnemi();
 					if(numeroCombat != nombreEnnemi) {
-						mainFrame.setNextFight();
-						mainFrame.getNextFightButton().addActionListener(new NextEnnemiButtonListener());
+						mainFrame.getFightPanel().setNextFight();
+						Utilitaire.removeAllListeners(mainFrame.getFightPanel().getNextEnnemiButton());
+						mainFrame.getFightPanel().getNextEnnemiButton().addActionListener(new NextEnnemiButtonListener());
 					}
 					else {
 						if(currentAction.get(0).equalsIgnoreCase("FIGHTMEAL")) {
-							mainFrame.setFightMealWin();
-							mainFrame.getOuiRepasApresCombat().addActionListener(new PrendreUnRepasApresCombatButtonListener());
-							mainFrame.getNonRepasApresCombat().addActionListener(new NePasPrendreUnRepasApresCombatButtonListener());
+							mainFrame.getFightPanel().setFightMealWin();
+							Utilitaire.removeAllListeners(mainFrame.getFightPanel().getYesMealAfterFight());
+							mainFrame.getFightPanel().getYesMealAfterFight().addActionListener(new PrendreUnRepasApresCombatButtonListener());
+							Utilitaire.removeAllListeners(mainFrame.getFightPanel().getNoMealAfterFight());
+							mainFrame.getFightPanel().getNoMealAfterFight().addActionListener(new NePasPrendreUnRepasApresCombatButtonListener());
 						}
 						else {
-							mainFrame.setFightWin();
+							mainFrame.getFightPanel().setFightWin();
 							if(currentNumero.getNumero() == 179) visited179AndKill = true;
 							if(currentAction.get(0).equalsIgnoreCase("FIGHTZ") && currentAction.get(1).equalsIgnoreCase("RANDOMMONSTER")) {
 								mainFrame.getNextNumberPanel().setNextButton(-1);
 							}
 							else {
 								mainFrame.getNextNumberPanel().setNextButton(1);
-								mainFrame.getFuite().setEnabled(false);
+								mainFrame.getEnnemiPanel().getEscape().setEnabled(false);
 								if(currentAction.get(0).equalsIgnoreCase("FIGHT") || currentAction.get(0).equalsIgnoreCase("CHOICE"))currentNumero.addNumero(Integer.parseInt(currentAction.get(currentAction.size()-3)));
 								else if(currentAction.get(0).equalsIgnoreCase("FIGHTX") || currentAction.get(0).equalsIgnoreCase("FIGHTZ")) currentNumero.addNumero(Integer.parseInt(currentAction.get(currentAction.size()-2)));
 								setTextNumero(currentNumero);
@@ -1797,8 +1790,8 @@ public class MainFrameController {
 				}
 			}
 			else if(valueDicesPj < valueDicesEnnemi) {
-				if(coupBloque) pj.recevoirDegats(1);
-				else pj.recevoirDegats(2);
+				if(coupBloque) pj.decreaseStamina(1);
+				else pj.decreaseStamina(2);
 				if(currentNumero.getNumero() == 230 && ghoulWound == 4) {
 					heroPanelController.majHero();
 					mainFrame.getNextNumberPanel().setNextButton(1);
@@ -1810,15 +1803,16 @@ public class MainFrameController {
 				}
 				else if(pj.getStamina() > 0) heroPanelController.majHero();
 				else {
-					pj.setEndurance(0);
+					pj.setStamina(0);
 					heroPanelController.majHero();
+					mainFrame.getEnnemiPanel().getEscape().setEnabled(false);
 					if(currentNumero.getNumero() == 230) {
 						mainFrame.getNextNumberPanel().setNextButton(1);
 						currentNumero.addNumero(Integer.parseInt(currentAction.get(5)));
 						setTextNumero(currentNumero);
 					}
 					else {
-						mainFrame.setFightGameOver();
+						mainFrame.getFightPanel().setFightGameOver();
 					}
 				}
 			}
@@ -1829,12 +1823,13 @@ public class MainFrameController {
 					setTextNumero(currentNumero);
 				}
 				else {
-					mainFrame.majFight();
-					mainFrame.getAleatoireButton().addActionListener(new FightAleatoireButtonListener());
+					mainFrame.getFightPanel().setFight();
+					Utilitaire.removeAllListeners(mainFrame.getFightPanel().getFightRandom());
+					mainFrame.getFightPanel().getFightRandom().addActionListener(new FightAleatoireButtonListener());
 				}
+				if(currentNumero.getNumero() == 179 && nombreAssaut >= 4) mainFrame.getEnnemiPanel().getEscape().setEnabled(false);
+				else if(currentAction.get(0).equalsIgnoreCase("FIGHT") && Integer.parseInt(currentAction.get(5)) != -1 && nombreAssaut >= Integer.parseInt(currentAction.get(6))) mainFrame.getEnnemiPanel().getEscape().setEnabled(true);
 			}
-			if(currentNumero.getNumero() == 179 && nombreAssaut >= 4) mainFrame.getFuite().setEnabled(false);
-			else if(currentAction.get(0).equalsIgnoreCase("FIGHT") && Integer.parseInt(currentAction.get(5)) != -1 && nombreAssaut >= Integer.parseInt(currentAction.get(6))) mainFrame.getFuite().setEnabled(true);
 			mainFrame.getFightPanel().revalidate();
 			mainFrame.getFightPanel().repaint();
 		}
@@ -1844,8 +1839,8 @@ public class MainFrameController {
 
 		public void actionPerformed(ActionEvent e) {
 			mainFrame.fightPanelRemoveAll();
-			mainFrame.majFight();
-			mainFrame.getAleatoireButton().addActionListener(new FightAleatoireButtonListener());
+			mainFrame.getFightPanel().setFight();
+			mainFrame.getFightPanel().getFightRandom().addActionListener(new FightAleatoireButtonListener());
 			mainFrame.getFightPanel().revalidate();
 			mainFrame.getFightPanel().repaint();
 		}
@@ -1856,8 +1851,8 @@ public class MainFrameController {
 		public void actionPerformed(ActionEvent e) {
 			mainFrame.fightPanelRemoveAll();
 			setEnnemiX();
-			mainFrame.majFight();
-			mainFrame.getAleatoireButton().addActionListener(new FightAleatoireButtonListener());
+			mainFrame.getFightPanel().setFight();
+			mainFrame.getFightPanel().getFightRandom().addActionListener(new FightAleatoireButtonListener());
 			mainFrame.getFightPanel().revalidate();
 			mainFrame.getFightPanel().repaint();
 		}
@@ -1868,17 +1863,17 @@ public class MainFrameController {
 		public void actionPerformed(ActionEvent e) {
 			mainFrame.fightPanelRemoveAll();
 			int valueDiceShield = Utilitaire.lancerSix();
-			mainFrame.setResultFightShield();
-			mainFrame.getOuiTenterChanceFight().addActionListener(new OuiTenterChanceFightButtonListener());
-			mainFrame.getNonTenterChanceFight().addActionListener(new NonTenterChanceFightButtonListener());
+			mainFrame.getFightPanel().setResultFightShield();
+			mainFrame.getFightPanel().getYesTryYourLuck().addActionListener(new OuiTenterChanceFightButtonListener());
+			mainFrame.getFightPanel().getNoTryYourLuck().addActionListener(new NonTenterChanceFightButtonListener());
 			if(valueDiceShield == 6) {
 				coupBloque = true;
-				mainFrame.getShieldResultText().setText("Coup bloqué !");
-				mainFrame.getShieldResultText().setForeground(new Color(103,221,51));
+				mainFrame.getFightPanel().getShieldResult().setText("Coup bloqué !");
+				mainFrame.getFightPanel().getShieldResult().setForeground(new Color(103,221,51));
 			}
 			else {
-				mainFrame.getShieldResultText().setText("Échec.");
-				mainFrame.getShieldResultText().setForeground(Color.RED);
+				mainFrame.getFightPanel().getShieldResult().setText("Échec.");
+				mainFrame.getFightPanel().getShieldResult().setForeground(Color.RED);
 			}
 			mainFrame.getFightPanel().revalidate();
 			mainFrame.getFightPanel().repaint();
@@ -1894,7 +1889,7 @@ public class MainFrameController {
 			setChoiceEnnemi();
 			nombreEnnemi = 1;
 			numeroCombat = 1;
-			mainFrame.getAleatoireButton().addActionListener(new FightAleatoireButtonListener());
+			mainFrame.getFightPanel().getFightRandom().addActionListener(new FightAleatoireButtonListener());
 			mainFrame.getInteractionPanel().revalidate();
 			mainFrame.getInteractionPanel().repaint();
 		}
@@ -1904,10 +1899,10 @@ public class MainFrameController {
 
 		public void actionPerformed(ActionEvent e) {
 			mainFrame.fightPanelRemoveAll();
-			mainFrame.setChoiceFuite();
-			mainFrame.getFuite().setEnabled(false);
-			mainFrame.getOuiTenterChanceFight().addActionListener(new FuiteCombatOuiChanceButtonListener());
-			mainFrame.getNonTenterChanceFight().addActionListener(new FuiteCombatNonChanceButtonListener());
+			mainFrame.getFightPanel().setChoiceFuite();
+			mainFrame.getEnnemiPanel().getEscape().setEnabled(false);
+			mainFrame.getFightPanel().getYesTryYourLuckEscape().addActionListener(new FuiteCombatOuiChanceButtonListener());
+			mainFrame.getFightPanel().getNoTryYourLuckEscape().addActionListener(new FuiteCombatNonChanceButtonListener());
 			if(currentNumero.getNumero() == 143) pj.removeProvision(1);
 			mainFrame.getFightPanel().revalidate();
 			mainFrame.getFightPanel().repaint();
@@ -1918,9 +1913,9 @@ public class MainFrameController {
 
 		public void actionPerformed(ActionEvent e) {
 			mainFrame.interactionPanelRemoveAll();
-			mainFrame.setChoiceFuiteAvantCombat();
-			mainFrame.getOuiTenterChanceFight().addActionListener(new FuiteAvantCombatOuiChanceButtonListener());
-			mainFrame.getNonTenterChanceFight().addActionListener(new FuiteAvantCombatNonChanceButtonListener());
+			mainFrame.getInteractionPanel().setChoiceFuiteAvantCombat();
+			mainFrame.getInteractionPanel().getYesEscapeBeforeFight().addActionListener(new FuiteAvantCombatOuiChanceButtonListener());
+			mainFrame.getInteractionPanel().getNoEscapeBeforeFight().addActionListener(new FuiteAvantCombatNonChanceButtonListener());
 			mainFrame.getInteractionPanel().revalidate();
 			mainFrame.getInteractionPanel().repaint();
 		}
@@ -1930,9 +1925,8 @@ public class MainFrameController {
 
 		public void actionPerformed(ActionEvent e) {
 			mainFrame.fightPanelRemoveAll();
-			mainFrame.setTenterChanceFight();
-			mainFrame.getAleatoireButton().addActionListener(new FuiteCombatOuiChanceAleatoireButtonListener());
-			mainFrame.setTestChance();
+			mainFrame.getFightPanel().setTenterChanceFight();
+			mainFrame.getFightPanel().getTryYourLuckRandom().addActionListener(new FuiteCombatOuiChanceAleatoireButtonListener());
 			mainFrame.getFightPanel().revalidate();
 			mainFrame.getFightPanel().repaint();
 		}
@@ -1942,10 +1936,10 @@ public class MainFrameController {
 
 		public void actionPerformed(ActionEvent e) {
 			mainFrame.interactionPanelRemoveAll();
-			mainFrame.setTest();
-			mainFrame.setTestChance();
-			mainFrame.getAleatoireButton().addActionListener(new FuiteAvantCombatOuiChanceAleatoireButtonListener());
-			mainFrame.setTestChance();
+			mainFrame.getInteractionPanel().setTest();
+			mainFrame.getInteractionPanel().setTestChance();
+			mainFrame.getInteractionPanel().getAleatoireButton().addActionListener(new FuiteAvantCombatOuiChanceAleatoireButtonListener());
+			mainFrame.getInteractionPanel().setTestChance();
 			mainFrame.getInteractionPanel().revalidate();
 			mainFrame.getInteractionPanel().repaint();
 		}
@@ -1960,23 +1954,25 @@ public class MainFrameController {
 			int valueDice2 = Utilitaire.lancerSix();
 			int valueDices = valueDice1 + valueDice2;
 			System.out.println(valueDices);
-			mainFrame.setFightTestChanceAleatoire();
+			mainFrame.getFightPanel().setEscapeTryYourLuckRandom();
 			if(valueDices <= pj.getLuck()) {
-				pj.recevoirDegats(1);
-				mainFrame.getResultatAleatoireTestLabel().setText("Réussite !");
-				mainFrame.getResultatAleatoireTestLabel().setForeground(new Color(103,221,51));
+				pj.decreaseStamina(1);
+				mainFrame.getFightPanel().getTryYourLuckResult().setText("Réussite !");
+				mainFrame.getFightPanel().getTryYourLuckResult().setForeground(new Color(103,221,51));
 			}
 			else {
-				pj.recevoirDegats(3);
-				mainFrame.getResultatAleatoireTestLabel().setText("Échec !");
-				mainFrame.getResultatAleatoireTestLabel().setForeground(Color.RED);
+				pj.decreaseStamina(3);
+				mainFrame.getFightPanel().getTryYourLuckResult().setText("Échec !");
+				mainFrame.getFightPanel().getTryYourLuckResult().setForeground(Color.RED);
 			}
-			pj.decrementChance();
+			pj.decrementLuck();
 			heroPanelController.majHero();
 			if(currentAction.get(0).equalsIgnoreCase("FIGHT")) currentNumero.addNumero(Integer.parseInt(currentAction.get(currentAction.size()-2)));
 			else currentNumero.addNumero(Integer.parseInt(currentAction.get(currentAction.size()-1)));
 			mainFrame.getNextNumberPanel().setNextButton(currentNumero.getEnsembleNumeroSuivants().size());
 			setTextNumero(currentNumero);
+			waitingForUser = false;
+			multipleNextAction();
 			mainFrame.getFightPanel().revalidate();
 			mainFrame.getFightPanel().repaint();
 		}
@@ -1991,18 +1987,18 @@ public class MainFrameController {
 			int valueDice2 = Utilitaire.lancerSix();
 			int valueDices = valueDice1 + valueDice2;
 			System.out.println(valueDices);
-			mainFrame.setResultatTestAleatoire();
+			mainFrame.getInteractionPanel().setResultatTestAleatoire();
 			if(valueDices <= pj.getLuck()) {
-				pj.recevoirDegats(1);
-				mainFrame.getResultatAleatoireTestLabel().setText("Réussite !");
-				mainFrame.getResultatAleatoireTestLabel().setForeground(new Color(103,221,51));
+				pj.decreaseStamina(1);
+				mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setText("Réussite !");
+				mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setForeground(new Color(103,221,51));
 			}
 			else {
-				pj.recevoirDegats(3);
-				mainFrame.getResultatAleatoireTestLabel().setText("Échec !");
-				mainFrame.getResultatAleatoireTestLabel().setForeground(Color.RED);
+				pj.decreaseStamina(3);
+				mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setText("Échec !");
+				mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setForeground(Color.RED);
 			}
-			pj.decrementChance();
+			pj.decrementLuck();
 			heroPanelController.majHero();
 			int compteur = 0;
 			while(!currentAction.get(compteur).equalsIgnoreCase("ESCAPE")) {
@@ -2022,13 +2018,15 @@ public class MainFrameController {
 
 		public void actionPerformed(ActionEvent e) {
 			mainFrame.interactionPanelRemoveAll();
-			pj.recevoirDegats(2);
+			pj.decreaseStamina(2);
 			heroPanelController.majHero();
 			if(currentAction.get(0).equalsIgnoreCase("FIGHT")) currentNumero.addNumero(Integer.parseInt(currentAction.get(currentAction.size()-2)));
 			else currentNumero.addNumero(Integer.parseInt(currentAction.get(currentAction.size()-1)));
 			mainFrame.resetAffichage();
 			mainFrame.getNextNumberPanel().setNextButton(currentNumero.getEnsembleNumeroSuivants().size());
 			setTextNumero(currentNumero);
+			waitingForUser = false;
+			multipleNextAction();
 			mainFrame.getInteractionPanel().revalidate();
 			mainFrame.getInteractionPanel().repaint();
 		}
@@ -2038,7 +2036,7 @@ public class MainFrameController {
 
 		public void actionPerformed(ActionEvent e) {
 			mainFrame.interactionPanelRemoveAll();
-			pj.recevoirDegats(2);
+			pj.decreaseStamina(2);
 			heroPanelController.majHero();
 			int compteur = 0;
 			while(!currentAction.get(compteur).equalsIgnoreCase("ESCAPE")) {
@@ -2060,7 +2058,7 @@ public class MainFrameController {
 		public void actionPerformed(ActionEvent e) {
 			mainFrame.interactionPanelRemoveAll();
 			int valueDice = Utilitaire.lancerSix();
-			pj.recevoirDegats(valueDice);
+			pj.decreaseStamina(valueDice);
 			if(pj.getStamina() > 0) {
 				heroPanelController.majHero();
 				currentNumero.addNumero(Integer.parseInt(currentAction.get(currentAction.size()-1)));
@@ -2069,9 +2067,9 @@ public class MainFrameController {
 				setTextNumero(currentNumero);
 			}
 			else {
-				pj.setEndurance(0);
+				pj.setStamina(0);
 				heroPanelController.majHero();
-				mainFrame.setGameOver();
+				mainFrame.getInteractionPanel().setGameOver();
 				mainFrame.getNextNumberPanel().setNextButton(0);
 			}
 			mainFrame.getInteractionPanel().revalidate();
@@ -2140,7 +2138,7 @@ public class MainFrameController {
 			mainFrame.interactionPanelRemoveAll();
 			pj.takeMeal();
 			heroPanelController.majHero();
-			for(int i = 0 ; i < 2 ; i++) {
+			for(int i = 0 ; i < 3 ; i++) {
 				currentAction.remove(0);
 			}
 			mainFrame.getInteractionPanel().revalidate();
@@ -2153,7 +2151,7 @@ public class MainFrameController {
 
 		public void actionPerformed(ActionEvent e) {
 			mainFrame.interactionPanelRemoveAll();
-			for(int i = 0 ; i < 2 ; i++) {
+			for(int i = 0 ; i < 3 ; i++) {
 				currentAction.remove(0);
 			}
 			mainFrame.getInteractionPanel().revalidate();
@@ -2304,13 +2302,13 @@ public class MainFrameController {
 		public void actionPerformed(ActionEvent e) {
 			mainFrame.interactionPanelRemoveAll();
 			if(e.getActionCommand().equalsIgnoreCase("oui")) {
-				mainFrame.setChoiceEquipmentChange();
-				mainFrame.getValiderEquipementJetable().addActionListener(new ValiderEquipmentJetableButtonListener());
+				mainFrame.getInteractionPanel().setChoiceEquipmentChange();
+				mainFrame.getInteractionPanel().getValiderEquipementJetable().addActionListener(new ValiderEquipmentJetableButtonListener());
 				for(int i = 4 ; i < pj.getEquipment().size() ; i++) {
-					mainFrame.getListeEquipementJetable().addItem(pj.getEquipment().get(i));
+					mainFrame.getInteractionPanel().getListeEquipementJetable().addItem(pj.getEquipment().get(i));
 				}
 				for(int i = 0 ; i < pj.getTreasure().size() ; i++) {
-					mainFrame.getListeEquipementJetable().addItem(pj.getTreasure().get(i));
+					mainFrame.getInteractionPanel().getListeEquipementJetable().addItem(pj.getTreasure().get(i));
 				}
 			}
 			else {
@@ -2336,8 +2334,8 @@ public class MainFrameController {
 
 		public void actionPerformed(ActionEvent e) {
 			mainFrame.interactionPanelRemoveAll();
-			if(pj.getEquipment().contains((String)mainFrame.getListeEquipementJetable().getSelectedItem())) pj.removeEquipment((String)mainFrame.getListeEquipementJetable().getSelectedItem());
-			else  pj.removeTreasure((String)mainFrame.getListeEquipementJetable().getSelectedItem());
+			if(pj.getEquipment().contains((String)mainFrame.getInteractionPanel().getListeEquipementJetable().getSelectedItem())) pj.removeEquipment((String)mainFrame.getInteractionPanel().getListeEquipementJetable().getSelectedItem());
+			else  pj.removeTreasure((String)mainFrame.getInteractionPanel().getListeEquipementJetable().getSelectedItem());
 			for(int i = 0 ; i < currentAction.size() ; i++) {
 				if(currentAction.get(i).equalsIgnoreCase("EQUIPMENT")) {
 					i++;
@@ -2373,7 +2371,7 @@ public class MainFrameController {
 	class ValidateInputUserPreviousNumberButtonListener implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
-			int inputUser = Integer.parseInt(mainFrame.getInputUserPreviousNumber().getText());
+			int inputUser = Integer.parseInt(mainFrame.getInteractionPanel().getInputUserPreviousNumber().getText());
 			switch(inputUser) {
 			case 12:
 				if(previousNumber != 12) {
@@ -2424,15 +2422,15 @@ public class MainFrameController {
 
 		public void actionPerformed(ActionEvent e) {
 			int compteur = 0;
-			if(mainFrame.getLoot1CheckBox().isSelected()) compteur++;
-			if(mainFrame.getLoot2CheckBox().isSelected()) compteur++;
-			if(mainFrame.getLoot3CheckBox().isSelected()) compteur++;
-			if(mainFrame.getLoot4CheckBox().isSelected()) compteur++;
-			if(mainFrame.getLoot5CheckBox().isSelected()) compteur++;
+			if(mainFrame.getInteractionPanel().getLoot1CheckBox().isSelected()) compteur++;
+			if(mainFrame.getInteractionPanel().getLoot2CheckBox().isSelected()) compteur++;
+			if(mainFrame.getInteractionPanel().getLoot3CheckBox().isSelected()) compteur++;
+			if(mainFrame.getInteractionPanel().getLoot4CheckBox().isSelected()) compteur++;
+			if(mainFrame.getInteractionPanel().getLoot5CheckBox().isSelected()) compteur++;
 			if(compteur != 2) JOptionPane.showMessageDialog(mainFrame, "Veuillez selectionner deux objets."); 
 			else {
 				mainFrame.interactionPanelRemoveAll();
-				if(mainFrame.getLoot1CheckBox().isSelected()) {
+				if(mainFrame.getInteractionPanel().getLoot1CheckBox().isSelected()) {
 					if(currentAction.get(1).equalsIgnoreCase("GOLD")) {
 						pj.addGold(Integer.parseInt(currentAction.get(2)));
 						goldChoice = true;
@@ -2440,7 +2438,7 @@ public class MainFrameController {
 					else if(currentAction.get(1).equalsIgnoreCase("EQUIPMENT")) pj.addEquipment(currentAction.get(2));
 					else pj.addTreasure(currentAction.get(2));
 				}
-				if(mainFrame.getLoot2CheckBox().isSelected()) {
+				if(mainFrame.getInteractionPanel().getLoot2CheckBox().isSelected()) {
 					if(currentAction.get(3).equalsIgnoreCase("GOLD")) {
 						pj.addGold(Integer.parseInt(currentAction.get(4)));
 						goldChoice = true;
@@ -2448,7 +2446,7 @@ public class MainFrameController {
 					else if(currentAction.get(3).equalsIgnoreCase("EQUIPMENT")) pj.addEquipment(currentAction.get(4));
 					else pj.addTreasure(currentAction.get(4));
 				}
-				if(mainFrame.getLoot3CheckBox().isSelected()) {
+				if(mainFrame.getInteractionPanel().getLoot3CheckBox().isSelected()) {
 					if(currentAction.get(5).equalsIgnoreCase("GOLD")) {
 						pj.addGold(Integer.parseInt(currentAction.get(6)));
 						goldChoice = true;
@@ -2456,7 +2454,7 @@ public class MainFrameController {
 					else if(currentAction.get(5).equalsIgnoreCase("EQUIPMENT")) pj.addEquipment(currentAction.get(6));
 					else pj.addTreasure(currentAction.get(6));
 				}
-				if(mainFrame.getLoot4CheckBox().isSelected()) {
+				if(mainFrame.getInteractionPanel().getLoot4CheckBox().isSelected()) {
 					if(currentAction.get(7).equalsIgnoreCase("GOLD")) {
 						pj.addGold(Integer.parseInt(currentAction.get(8)));
 						goldChoice = true;
@@ -2464,7 +2462,7 @@ public class MainFrameController {
 					else if(currentAction.get(7).equalsIgnoreCase("EQUIPMENT")) pj.addEquipment(currentAction.get(8));
 					else pj.addTreasure(currentAction.get(8));
 				}
-				if(mainFrame.getLoot5CheckBox().isSelected()) {
+				if(mainFrame.getInteractionPanel().getLoot5CheckBox().isSelected()) {
 					if(currentAction.get(9).equalsIgnoreCase("GOLD")) {
 						pj.addGold(Integer.parseInt(currentAction.get(10)));
 						goldChoice = true;
@@ -2544,9 +2542,9 @@ public class MainFrameController {
 
 		public void actionPerformed(ActionEvent e) {
 			mainFrame.interactionPanelRemoveAll();
-			if("1 Pièce d'Or".equalsIgnoreCase((String)mainFrame.getListeEquipementJetable().getSelectedItem())) pj.decreaseGold(1);
-			else if(pj.getEquipment().contains((String)mainFrame.getListeEquipementJetable().getSelectedItem())) pj.removeEquipment((String)mainFrame.getListeEquipementJetable().getSelectedItem());
-			else  pj.removeTreasure((String)mainFrame.getListeEquipementJetable().getSelectedItem());
+			if("1 Pièce d'Or".equalsIgnoreCase((String)mainFrame.getInteractionPanel().getListeEquipementJetable().getSelectedItem())) pj.decreaseGold(1);
+			else if(pj.getEquipment().contains((String)mainFrame.getInteractionPanel().getListeEquipementJetable().getSelectedItem())) pj.removeEquipment((String)mainFrame.getInteractionPanel().getListeEquipementJetable().getSelectedItem());
+			else  pj.removeTreasure((String)mainFrame.getInteractionPanel().getListeEquipementJetable().getSelectedItem());
 			heroPanelController.majHero();
 			waitingForUser = false;
 			multipleNextAction();
@@ -2558,12 +2556,12 @@ public class MainFrameController {
 	class ValidateGambleButtonListener implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
-			bet = (int)mainFrame.getGambleValue().getValue();
+			bet = (int)mainFrame.getInteractionPanel().getGambleValue().getValue();
 			System.out.println(bet);
 			mainFrame.interactionPanelRemoveAll();
-			mainFrame.setTest();
-			mainFrame.setThrowDice();
-			mainFrame.getAleatoireButton().addActionListener(new RandomGambleButtonListener());
+			mainFrame.getInteractionPanel().setTest();
+			mainFrame.getInteractionPanel().setThrowDice();
+			mainFrame.getInteractionPanel().getAleatoireButton().addActionListener(new RandomGambleButtonListener());
 			mainFrame.getInteractionPanel().revalidate();
 			mainFrame.getInteractionPanel().repaint();
 		}
@@ -2579,11 +2577,11 @@ public class MainFrameController {
 			int valueDice1Ennemi = Utilitaire.lancerSix();
 			int valueDice2Ennemi = Utilitaire.lancerSix();
 			valueDicesEnnemi = valueDice1Ennemi + valueDice2Ennemi;
-			mainFrame.setGambleResult();
+			mainFrame.getInteractionPanel().setGambleResult();
 			if(valueDicesPj > valueDicesEnnemi) {
 				pj.addGold(bet);
-				mainFrame.getResultatAleatoireTestLabel().setText("Réussite !");
-				mainFrame.getResultatAleatoireTestLabel().setForeground(new Color(103,221,51));
+				mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setText("Réussite !");
+				mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setForeground(new Color(103,221,51));
 				if(!gambleBonus) {
 					pj.addSkill(2);
 					pj.addStamina(2);
@@ -2593,16 +2591,16 @@ public class MainFrameController {
 			}
 			else if(valueDicesPj < valueDicesEnnemi) {
 				pj.decreaseGold(bet);
-				mainFrame.getResultatAleatoireTestLabel().setText("Échec !");
-				mainFrame.getResultatAleatoireTestLabel().setForeground(Color.RED);
+				mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setText("Échec !");
+				mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setForeground(Color.RED);
 			}
 			else {
-				mainFrame.getResultatAleatoireTestLabel().setText("Égalité !");
-				mainFrame.getResultatAleatoireTestLabel().setForeground(new Color(57,147,232));
+				mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setText("Égalité !");
+				mainFrame.getInteractionPanel().getResultatAleatoireTestLabel().setForeground(new Color(57,147,232));
 			}
 			heroPanelController.majHero();
-			mainFrame.getYesGambleAgain().addActionListener(new YesGambleAgainButtonListener());
-			mainFrame.getNoGambleAgain().addActionListener(new NoGambleAgainButtonListener());
+			mainFrame.getInteractionPanel().getYesGambleAgain().addActionListener(new YesGambleAgainButtonListener());
+			mainFrame.getInteractionPanel().getNoGambleAgain().addActionListener(new NoGambleAgainButtonListener());
 			mainFrame.getInteractionPanel().revalidate();
 			mainFrame.getInteractionPanel().repaint();
 		}
@@ -2611,11 +2609,11 @@ public class MainFrameController {
 	class YesGambleAgainButtonListener implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
-			if(pj.getOr() > 0) {
+			if(pj.getGold() > 0) {
 				mainFrame.interactionPanelRemoveAll();
-				mainFrame.setGamble();
+				mainFrame.getInteractionPanel().setGamble();
 				setGambleParameters();
-				mainFrame.getValidateGambleValue().addActionListener(new ValidateGambleButtonListener());
+				mainFrame.getInteractionPanel().getValidateGambleValue().addActionListener(new ValidateGambleButtonListener());
 				mainFrame.getInteractionPanel().revalidate();
 				mainFrame.getInteractionPanel().repaint();
 			}

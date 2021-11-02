@@ -44,7 +44,7 @@ public class FightPanel extends JPanel {
 	//Shield
 	private JTextField inputShieldValue;
 	private JButton validateInputShield;
-	private JButton ShieldRandom;
+	private JButton shieldRandom;
 	//ShieldResult
 	private JLabel shieldResult;
 	//Special
@@ -84,7 +84,7 @@ public class FightPanel extends JPanel {
 		//Shield
 		inputShieldValue = new JTextField();
 		validateInputShield = new JButton("Valider");
-		ShieldRandom = new JButton("Aléatoire");
+		shieldRandom = new JButton("Aléatoire");
 		//ShieldResult
 		shieldResult = new JLabel();
 		//Special
@@ -93,15 +93,80 @@ public class FightPanel extends JPanel {
 	}
 	
 	// Getters -------------------------------------------------------------------------------------------------------------------------------------------
-	
+	public JPanel getCenter() {
+		return this.center;
+	}
+	//Fight
 	public JTextField inputFightValue() {
 		return this.inputFightValue;
 	}
 	public JButton validateInputValue() {
 		return this.validateInputFight;
 	}
-	public JButton random() {
+	public JButton getFightRandom() {
 		return this.fightRandom;
+	}
+	//MultipleFight
+	public JButton getNextEnnemiButton() {
+		return this.nextEnnemiButton;
+	}
+	//FightResult
+	public JLabel getAssaultResult() {
+		return this.assaultResult;
+	}
+	public JButton getYesTryYourLuck() {
+		return this.yesTryYourLuck;
+	}
+	public JButton getNoTryYourLuck() {
+		return this.noTryYourLuck;
+	}
+	public JButton getNextAssaultDraw() {
+		return this.nextAssaultDraw;
+	}
+	//TryYourLuck
+	public JTextField getInputTryYourLuckValue() {
+		return this.inputTryYourLuckValue;
+	}
+	public JButton getValidateInputTryYourLuck() {
+		return this.validateInputTryYourLuck;
+	}
+	public JButton getTryYourLuckRandom() {
+		return this.tryYourLuckRandom;
+	}
+	public JButton getNextAssaultTryYourLuck() {
+		return this.nextAssaultTryYourLuck;
+	}
+	//TryYourLuckResult
+	public JLabel getTryYourLuckResult() {
+		return this.tryYourLuckResult;
+	}
+	//Escape
+	public JButton getYesTryYourLuckEscape() {
+		return this.yesTryYourLuckEscape;
+	}
+	public JButton getNoTryYourLuckEscape() {
+		return this.noTryYourLuckEscape;
+	}
+	//Shield
+	public JTextField getInputShieldValue() {
+		return this.inputShieldValue;
+	}
+	public JButton getValidateInputShield() {
+		return this.validateInputShield;
+	}
+	public JButton getShieldRandom() {
+		return this.shieldRandom;
+	}
+	//ShieldResult
+	public JLabel getShieldResult() {
+		return this.shieldResult;
+	}
+	//Special
+	public JButton getYesMealAfterFight() {
+		return this.yesMealAfterFight;
+	}
+	public JButton getNoMealAfterFight() {
+		return this.noMealAfterFight;
 	}
 	
 	// Methods -------------------------------------------------------------------------------------------------------------------------------------------
@@ -109,7 +174,7 @@ public class FightPanel extends JPanel {
 	public void setFight() {
 		this.setLayout(new BorderLayout());
 		
-		north.setPreferredSize(new Dimension(0,100));
+		north.setPreferredSize(new Dimension(0,90));
 		this.add(north, BorderLayout.NORTH);
 
 		center.setLayout(new GridLayout(4,1));
@@ -135,13 +200,13 @@ public class FightPanel extends JPanel {
 		
 		this.add(center, BorderLayout.CENTER);
 		
-		south.setPreferredSize(new Dimension(0,100));
+		south.setPreferredSize(new Dimension(0,90));
 		this.add(south, BorderLayout.SOUTH);
 	}
 	
-	public void majFight() {
+	/*public void majFight() {
 		// identique à setFight()
-	}
+	}*/
 	
 	public void setNextFight() {
 		north.setPreferredSize(new Dimension(0,120));
@@ -161,12 +226,12 @@ public class FightPanel extends JPanel {
 		
 		this.add(center, BorderLayout.CENTER);
 		
-		south.setPreferredSize(new Dimension(0,120));
+		south.setPreferredSize(new Dimension(0,80));
 		this.add(south, BorderLayout.SOUTH);
 	}
 	
 	public void setFightAleatoire() {
-		north.setPreferredSize(new Dimension(0,120));
+		north.setPreferredSize(new Dimension(0,100));
 		this.add(north, BorderLayout.NORTH);
 	
 		center.setLayout(new GridLayout(3,1));
@@ -187,7 +252,7 @@ public class FightPanel extends JPanel {
 		
 		this.add(center, BorderLayout.CENTER);
 		
-		south.setPreferredSize(new Dimension(0,120));
+		south.setPreferredSize(new Dimension(0,100));
 		this.add(south, BorderLayout.SOUTH);
 	}
 	
@@ -207,12 +272,12 @@ public class FightPanel extends JPanel {
 		
 		this.add(center, BorderLayout.CENTER);
 		
-		south.setPreferredSize(new Dimension(0,120));
+		south.setPreferredSize(new Dimension(0,100));
 		this.add(south, BorderLayout.SOUTH);
 	}
 	
 	public void setTenterChanceFight() {
-		north.setPreferredSize(new Dimension(0,100));
+		north.setPreferredSize(new Dimension(0,90));
 		this.add(north, BorderLayout.NORTH);
 		
 		center.setLayout(new GridLayout(4,1));
@@ -239,7 +304,7 @@ public class FightPanel extends JPanel {
 		
 		this.add(center, BorderLayout.CENTER);
 		
-		south.setPreferredSize(new Dimension(0,100));
+		south.setPreferredSize(new Dimension(0,90));
 		this.add(south, BorderLayout.SOUTH);
 	}
 	
@@ -261,12 +326,12 @@ public class FightPanel extends JPanel {
 		
 		this.add(center, BorderLayout.CENTER);
 		
-		south.setPreferredSize(new Dimension(0,120));
+		south.setPreferredSize(new Dimension(0,100));
 		this.add(south, BorderLayout.SOUTH);
 	}
 	
 	public void setChoiceFuite() {
-		north.setPreferredSize(new Dimension(0,120));
+		north.setPreferredSize(new Dimension(0,100));
 		this.add(north, BorderLayout.NORTH);
 		
 		center.setLayout(new GridLayout(3,1));
@@ -291,7 +356,7 @@ public class FightPanel extends JPanel {
 		
 		this.add(center, BorderLayout.CENTER);
 		
-		south.setPreferredSize(new Dimension(0,120));
+		south.setPreferredSize(new Dimension(0,100));
 		this.add(south, BorderLayout.SOUTH);
 	}
 	
@@ -356,7 +421,7 @@ public class FightPanel extends JPanel {
 	}
 	
 	public void setFightShield() {
-		north.setPreferredSize(new Dimension(0,80));
+		north.setPreferredSize(new Dimension(0,70));
 		this.add(north, BorderLayout.NORTH);
 	
 		center.setLayout(new GridLayout(5,1));
@@ -386,18 +451,18 @@ public class FightPanel extends JPanel {
 		center.add(ligne4);
 		
 		JPanel ligne5 = new JPanel(new FlowLayout(FlowLayout.CENTER));
-		ShieldRandom = new JButton("Aléatoire");
-		ligne5.add(ShieldRandom);
+		shieldRandom = new JButton("Aléatoire");
+		ligne5.add(shieldRandom);
 		center.add(ligne5);
 		
 		this.add(center, BorderLayout.CENTER);
 		
-		south.setPreferredSize(new Dimension(0,80));
+		south.setPreferredSize(new Dimension(0,70));
 		this.add(south, BorderLayout.SOUTH);
 	}
 	
 	public void setResultFightShield() {
-		north.setPreferredSize(new Dimension(0,100));
+		north.setPreferredSize(new Dimension(0,80));
 		this.add(north, BorderLayout.NORTH);
 	
 		center.setLayout(new GridLayout(5,1));
